@@ -3,13 +3,19 @@
 #pragma once
 
 #include <QMainWindow>
-#include <QPushButton>
+
+namespace Ui 
+{
+class MainWindow;
+}
 
 class MainWindow : public QMainWindow
 {
+    Q_OBJECT
+
     public:
-        MainWindow()
-        {
-            new QPushButton("Button", this);
-        }
+        MainWindow();
+
+    private:
+        Ui::MainWindow* _window;
 };
