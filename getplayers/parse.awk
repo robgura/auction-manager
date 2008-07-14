@@ -1,7 +1,7 @@
 #!/bin/awk -f
 
 # data source
-# wget -O lettera http://sports.yahoo.com/nfl/players?type=lastname&query=A
+# wget -O players http://sports.yahoo.com/nfl/players?type=lastname&query=A
 # this url seems to get all the players, not just last name A
 
 BEGIN{
