@@ -5,6 +5,7 @@
 #include "view/ui_mainform.h"
 #include <QDebug>
 #include <QFileDialog>
+#include <QTemporaryFile>
 #include <assert.h>
 #include <fstream>
 #include <sstream>
@@ -71,10 +72,14 @@ void MainWindow::newProject(bool)
             sqlite3_close(_db);
         }
 
+        bool weAreCool = true;
         QFile file(fileName);
-        bool gone = file.remove();
+        if(file.exists())
+        {
+            weAreCool = file.remove();
+        }
 
-        if(gone)
+        if(weAreCool)
         {
             sqlite3_open(fileName.toStdString().c_str(), &_db);
 
@@ -112,7 +117,9 @@ void MainWindow::initDatabase(sqlite3* db)
         qDebug() << sqlite3_errmsg(db);
     }
 
-    std::ifstream inFile("./getplayers/players.dat");
+    QTemporaryFile* tempFile = QTemporaryFile::createLocalFile(":/res/players.dat");
+
+    std::ifstream inFile(tempFile->fileName().toStdString().c_str());
     std::string lineBuf;
     while(std::getline(inFile, lineBuf))
     {
@@ -143,5 +150,7 @@ void MainWindow::initDatabase(sqlite3* db)
             qDebug() << sqlite3_errmsg(db);
         }
     }
+
+    delete tempFile;
 }
 
