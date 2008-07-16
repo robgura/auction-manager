@@ -2,6 +2,7 @@
 
 # data source
 # wget -O players http://sports.yahoo.com/nfl/players?type=lastname&query=A
+# parse.awk players > players.dat
 # this url seems to get all the players, not just last name A
 
 BEGIN{

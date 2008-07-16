@@ -7506,7 +7506,7 @@ YAHOO.Sports.league = 'nfl';
 <tr class="ysprow1">
  <td>&nbsp;<a href="/nfl/players/6789">Kevin Jones</a></td>
  <td>RB</td>
- <td><a href="/nfl/teams/det">Detroit Lions</a></td>
+ <td><a href="/nfl/teams/chi">Chicago Bears</a></td>
 </tr>
 <tr class="ysprow2">
  <td>&nbsp;<a href="/nfl/players/5896">Levi Jones</a></td>
@@ -15719,4 +15719,4 @@ if ( "undefined" != typeof(rt_Done) ) {
 					</script></div>
 </body>
 </html>
-<!-- fe2.sports.ac4.yahoo.com uncompressed Sun Jul 13 22:40:13 PDT 2008 -->
+<!-- fe9.sports.mud.yahoo.com uncompressed Tue Jul 15 22:51:31 PDT 2008 -->
