@@ -4,7 +4,7 @@ set(LIB_NAME view)
 
 find_package(Qt4 REQUIRED)
 include(${QT_USE_FILE})
-include_directories(include ./)
+include_directories(include ./ ../sqlite)
 
 file(GLOB headers include/*.h)
 file(GLOB srcs src/*.cpp src/*.c)

@@ -18,20 +18,20 @@ BEGIN{
     if(line == 2)
     {
         value = getId();
-        printf("%s # ", value);
+        printf("%s#", value);
 
         value = getName();
-        printf("%s # ", value);
+        printf("%s#", value);
     }
     else if(line == 3)
     {
         value = getPos();
-        printf("%s # ", value);
+        printf("%s#", value);
     }
     else if(line == 4)
     {
         value = getName();
-        printf("%s # ", value);
+        printf("%s#", value);
     }
     else if(line == 5)
     {
