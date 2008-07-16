@@ -3,7 +3,6 @@
 #include "player.h"
 #include <fstream>
 #include <sstream>
-#include "sqldefs.h"
 #include "sqlite3.h"
 #include "ui_mainform.h"
 #include <QFileDialog>
