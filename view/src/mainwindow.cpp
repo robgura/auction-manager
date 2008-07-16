@@ -12,6 +12,7 @@
 MainWindow::MainWindow()
     : _window(new Ui::MainWindow())
     , _playerModel(0)
+    , _proxyModel(0)
     , _db(0)
 {
     _window->setupUi(this);
@@ -19,6 +20,8 @@ MainWindow::MainWindow()
     bool v = connect(_window->actionNew, SIGNAL(triggered(bool)), this, SLOT(newProject(bool)));
     assert(v);
     v = connect(_window->actionOpen, SIGNAL(triggered(bool)), this, SLOT(openProject(bool)));
+    assert(v);
+    v = connect(_window->playerInput, SIGNAL(textChanged(const QString&)), this, SLOT(playerInputLineEditChange(const QString&)));
     assert(v);
 }
 
@@ -87,7 +90,16 @@ void MainWindow::initPlayerModel()
     delete _playerModel;
     _playerModel = new PlayerModel(_db);
 
-    _window->playerView->setModel(_playerModel);
+    delete _proxyModel;
+    _proxyModel = new QSortFilterProxyModel();
+    _proxyModel->setSourceModel(_playerModel);
+
+    _window->playerView->setModel(_proxyModel);
+}
+
+void MainWindow::playerInputLineEditChange(const QString& newFilter)
+{
+    _proxyModel->setFilterRegExp(QRegExp(newFilter, Qt::CaseInsensitive));
 }
 
 void MainWindow::initDatabase(sqlite3* db)
