@@ -22,6 +22,7 @@ class MainWindow : public QMainWindow
 
     private slots:
         void newProject(bool);
+        void openProject(bool);
 
     private:
         static void initDatabase(sqlite3* db);

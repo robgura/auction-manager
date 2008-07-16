@@ -18,6 +18,8 @@ MainWindow::MainWindow()
 
     bool v = connect(_window->actionNew, SIGNAL(triggered(bool)), this, SLOT(newProject(bool)));
     assert(v);
+    v = connect(_window->actionOpen, SIGNAL(triggered(bool)), this, SLOT(openProject(bool)));
+    assert(v);
 }
 
 MainWindow::~MainWindow()
@@ -27,9 +29,31 @@ MainWindow::~MainWindow()
     sqlite3_close(_db);
 }
 
+void MainWindow::openProject(bool)
+{
+    QFileDialog dialog(this, "Choose File To Open");
+    dialog.setFileMode(QFileDialog::ExistingFile);
+    dialog.setAcceptMode(QFileDialog::AcceptOpen);
+    dialog.setFilter("*.acx");
+
+    if(dialog.exec())
+    {
+        QString fileName = dialog.selectedFiles().at(0);
+
+        if(_db != 0)
+        {
+            sqlite3_close(_db);
+        }
+
+        sqlite3_open(fileName.toStdString().c_str(), &_db);
+
+        initPlayerModel();
+    }
+}
+
 void MainWindow::newProject(bool)
 {
-    QFileDialog dialog(this, "Choose File");
+    QFileDialog dialog(this, "Choose File To Create");
     dialog.setFileMode(QFileDialog::AnyFile);
     dialog.setAcceptMode(QFileDialog::AcceptSave);
     dialog.setFilter("*.acx");
@@ -44,11 +68,17 @@ void MainWindow::newProject(bool)
             sqlite3_close(_db);
         }
 
-        sqlite3_open(fileName.toStdString().c_str(), &_db);
+        QFile file(fileName);
+        bool gone = file.remove();
 
-        initDatabase(_db);
+        if(gone)
+        {
+            sqlite3_open(fileName.toStdString().c_str(), &_db);
 
-        initPlayerModel();
+            initDatabase(_db);
+
+            initPlayerModel();
+        }
     }
 }
 
@@ -67,7 +97,6 @@ void MainWindow::initDatabase(sqlite3* db)
     int rc1 = sqlite3_exec(db, createTable.c_str(), 0, 0, 0);
     if(rc1 != SQLITE_OK)
     {
-            qDebug() << "aAAA\n";
         qDebug() << sqlite3_errmsg(db);
     }
 
