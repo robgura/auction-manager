@@ -1,4 +1,4 @@
-#include "player.h"
+#include "view/player.h"
 #include <fstream>
 #include <sstream>
 #include <QDebug>

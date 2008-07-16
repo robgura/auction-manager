@@ -1,12 +1,13 @@
+
+#include "sqlite/sqlite3.h"
+#include "view/mainwindow.h"
+#include "view/player.h"
+#include "view/ui_mainform.h"
 #include <QDebug>
-#include "mainwindow.h"
-#include "player.h"
-#include <fstream>
-#include <sstream>
-#include "sqlite3.h"
-#include "ui_mainform.h"
 #include <QFileDialog>
 #include <assert.h>
+#include <fstream>
+#include <sstream>
 
 MainWindow::MainWindow()
     : _window(new Ui::MainWindow())
