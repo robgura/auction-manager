@@ -26,7 +26,10 @@ endif(WIN32)
 
 INCLUDE_DIRECTORIES(./)
 
-set(CMAKE_CXX_FLAGS -g)
+set(CMAKE_CXX_FLAGS "-g -Wall")
+
+#set(CMAKE_VERBOSE_MAKEFILE true)
+set(CMAKE_SUPPRESS_REGENERATION true)
 
 add_subdirectory(sqlite)
 add_subdirectory(view)

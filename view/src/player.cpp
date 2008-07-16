@@ -3,49 +3,53 @@
 #include <sstream>
 #include <QDebug>
 
-void niceInsertColumn(QStandardItem* parent, int column, QStandardItem* item)
-{
-    QList<QStandardItem*> items;
-    items << item;
-    parent->insertColumn(column, items);
-}
-
-void Player::loadPlayers(sqlite3* db, QStandardItemModel* model)
-{
-    std::ifstream inFile("./getplayers/players.dat");
-    std::string lineBuf;
-    while(std::getline(inFile, lineBuf))
-    {
-        std::istringstream ist(lineBuf);
-
-        std::string key;
-        std::getline(ist, key, '#');
-
-        std::string name;
-        std::getline(ist, name, '#');
-
-        std::string pos;
-        std::getline(ist, pos, '#');
-
-        std::string team;
-        std::getline(ist, team, '#');
-
-        Qt::ItemFlags flag(Qt::ItemIsSelectable | Qt::ItemIsDragEnabled | Qt::ItemIsEnabled);
-
-        QStandardItem* nameItem = new QStandardItem(name.c_str());
-        nameItem->setFlags(flag);
-
-        QStandardItem* posItem = new QStandardItem(pos.c_str());
-        posItem->setFlags(flag);
-
-        QStandardItem* teamItem = new QStandardItem(team.c_str());
-        teamItem->setFlags(flag);
-
-        QStandardItem* keyItem = new QStandardItem(key.c_str());
-
-        QList<QStandardItem*> items;
-        items << nameItem << posItem << teamItem << keyItem;
-
-        model->appendRow(items);
-    }
-}
+// new item comment void niceInsertColumn(QStandardItem* parent, int column, QStandardItem* item)
+// new item comment {
+// new item comment     QList<QStandardItem*> items;
+// new item comment     items << item;
+// new item comment     parent->insertColumn(column, items);
+// new item comment }
+// new item comment 
+// new item comment void Player::loadPlayers(sqlite3* db, QStandardItemModel* model)
+// new item comment {
+// new item comment     std::ifstream inFile("./getplayers/players.dat");
+// new item comment     std::string lineBuf;
+// new item comment     while(std::getline(inFile, lineBuf))
+// new item comment     {
+// new item comment         std::istringstream ist(lineBuf);
+// new item comment 
+// new item comment         std::string key;
+// new item comment         std::getline(ist, key, '#');
+// new item comment 
+// new item comment         std::string name;
+// new item comment         std::getline(ist, name, '#');
+// new item comment 
+// new item comment         std::string pos;
+// new item comment         std::getline(ist, pos, '#');
+// new item comment 
+// new item comment         std::string team;
+// new item comment         std::getline(ist, team, '#');
+// new item comment 
+// new item comment         Qt::ItemFlags flag(Qt::ItemIsSelectable | Qt::ItemIsDragEnabled | Qt::ItemIsEnabled);
+// new item comment 
+// new item comment         QStandardItem* item = new QStandardItem(key.c_str());
+// new item comment 
+// new item comment 
+// new item comment 
+// new item comment //        QStandardItem* nameItem = new QStandardItem(name.c_str());
+// new item comment //        nameItem->setFlags(flag);
+// new item comment //
+// new item comment //        QStandardItem* posItem = new QStandardItem(pos.c_str());
+// new item comment //        posItem->setFlags(flag);
+// new item comment //
+// new item comment //        QStandardItem* teamItem = new QStandardItem(team.c_str());
+// new item comment //        teamItem->setFlags(flag);
+// new item comment //
+// new item comment //        QStandardItem* keyItem = new QStandardItem(key.c_str());
+// new item comment 
+// new item comment         QList<QStandardItem*> items;
+// new item comment         items << nameItem << posItem << teamItem << keyItem;
+// new item comment 
+// new item comment         model->appendRow(items);
+// new item comment     }
+// new item comment }

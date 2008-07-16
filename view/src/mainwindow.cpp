@@ -1,7 +1,7 @@
 
 #include "sqlite/sqlite3.h"
 #include "view/mainwindow.h"
-#include "view/player.h"
+#include "view/playermodel.h"
 #include "view/ui_mainform.h"
 #include <QDebug>
 #include <QFileDialog>
@@ -11,7 +11,7 @@
 
 MainWindow::MainWindow()
     : _window(new Ui::MainWindow())
-    , _standardItemModel(0)
+    , _playerModel(0)
     , _db(0)
 {
     _window->setupUi(this);
@@ -22,7 +22,7 @@ MainWindow::MainWindow()
 
 MainWindow::~MainWindow()
 {
-    delete _standardItemModel;
+    delete _playerModel;
 
     sqlite3_close(_db);
 }
@@ -32,6 +32,8 @@ void MainWindow::newProject(bool)
     QFileDialog dialog(this, "Choose File");
     dialog.setFileMode(QFileDialog::AnyFile);
     dialog.setAcceptMode(QFileDialog::AcceptSave);
+    dialog.setFilter("*.acx");
+    dialog.setDefaultSuffix("acx");
 
     if(dialog.exec())
     {
@@ -52,19 +54,10 @@ void MainWindow::newProject(bool)
 
 void MainWindow::initPlayerModel()
 {
-    delete _standardItemModel;
-    _standardItemModel = new QStandardItemModel();
+    delete _playerModel;
+    _playerModel = new PlayerModel(_db);
 
-    QStringList headers;
-    headers << "Player Name" << "Position" << "Team";
-
-    _standardItemModel->setHorizontalHeaderLabels(headers);
-
-    Player::loadPlayers(_db, _standardItemModel);
-
-    _window->playerView->setModel(_standardItemModel);
-
-    _standardItemModel->setColumnCount(3);
+    _window->playerView->setModel(_playerModel);
 }
 
 void MainWindow::initDatabase(sqlite3* db)
@@ -72,8 +65,9 @@ void MainWindow::initDatabase(sqlite3* db)
     std::string createTable = "create table NFLPlayers (Key INTEGER PRIMARY KEY, Name TEXT NOT NULL, Pos TEXT NOT NULL, Team TEXT);";
 
     int rc1 = sqlite3_exec(db, createTable.c_str(), 0, 0, 0);
-    if(rc1 != 0)
+    if(rc1 != SQLITE_OK)
     {
+            qDebug() << "aAAA\n";
         qDebug() << sqlite3_errmsg(db);
     }
 
@@ -102,9 +96,8 @@ void MainWindow::initDatabase(sqlite3* db)
         insert += "\"" + team + "\"";
         insert += ");";
 
-        qDebug() << insert.c_str();
         int rc2 = sqlite3_exec(db, insert.c_str(), 0, 0, 0);
-        if(rc2 != 0);
+        if(rc2 != SQLITE_OK)
         {
             qDebug() << sqlite3_errmsg(db);
         }

@@ -3,9 +3,9 @@
 #pragma once
 
 #include <QMainWindow>
-#include <QStandardItemModel>
 
 struct sqlite3;
+class PlayerModel;
 
 namespace Ui 
 {
@@ -30,7 +30,7 @@ class MainWindow : public QMainWindow
     private:
         Ui::MainWindow* _window;
 
-        QStandardItemModel* _standardItemModel;
+        PlayerModel* _playerModel;
 
         sqlite3* _db;
 };
