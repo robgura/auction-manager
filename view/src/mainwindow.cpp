@@ -1,6 +1,8 @@
 
 #include "sqlite/sqlite3.h"
+#include "view/createteamdialog.h"
 #include "view/mainwindow.h"
+#include "view/ownermodel.h"
 #include "view/playermodel.h"
 #include "view/ui_mainform.h"
 #include <QDebug>
@@ -13,23 +15,29 @@
 MainWindow::MainWindow()
     : _window(new Ui::MainWindow())
     , _playerModel(0)
-    , _proxyModel(0)
+    , _ownerModel(0)
+    , _playerProxyModel(0)
+    , _ownerProxyModel(0)
     , _db(0)
 {
     _window->setupUi(this);
 
     bool v = connect(_window->actionNew, SIGNAL(triggered(bool)), this, SLOT(newProject(bool)));
     assert(v);
+
     v = connect(_window->actionOpen, SIGNAL(triggered(bool)), this, SLOT(openProject(bool)));
     assert(v);
+
+    v = connect(_window->actionOwner, SIGNAL(triggered(bool)), this, SLOT(createTeamEditor(bool)));
+    assert(v);
+
     v = connect(_window->playerInput, SIGNAL(textChanged(const QString&)), this, SLOT(playerInputLineEditChange(const QString&)));
     assert(v);
+
 }
 
 MainWindow::~MainWindow()
 {
-    delete _playerModel;
-
     sqlite3_close(_db);
 }
 
@@ -52,6 +60,8 @@ void MainWindow::openProject(bool)
         sqlite3_open(fileName.toStdString().c_str(), &_db);
 
         initPlayerModel();
+
+        initOwnerModel();
     }
 }
 
@@ -86,6 +96,8 @@ void MainWindow::newProject(bool)
             initDatabase(_db);
 
             initPlayerModel();
+
+            initOwnerModel();
         }
     }
 }
@@ -95,24 +107,35 @@ void MainWindow::initPlayerModel()
     delete _playerModel;
     _playerModel = new PlayerModel(_db);
 
-    delete _proxyModel;
-    _proxyModel = new QSortFilterProxyModel();
-    _proxyModel->setSourceModel(_playerModel);
+    delete _playerProxyModel;
+    _playerProxyModel = new QSortFilterProxyModel();
+    _playerProxyModel->setSourceModel(_playerModel);
 
-    _window->playerView->setModel(_proxyModel);
+    _window->playerView->setModel(_playerProxyModel);
+}
+
+void MainWindow::initOwnerModel()
+{
+    delete _ownerModel;
+    _ownerModel = new OwnerModel(_db);
+
+    delete _ownerProxyModel;
+    _ownerProxyModel = new QSortFilterProxyModel();
+    _ownerProxyModel->setSourceModel(_ownerModel);
+
+    _window->ownerView->setModel(_ownerProxyModel);
 }
 
 void MainWindow::playerInputLineEditChange(const QString& newFilter)
 {
-    _proxyModel->setFilterRegExp(QRegExp(newFilter, Qt::CaseInsensitive));
+    _playerProxyModel->setFilterRegExp(QRegExp(newFilter, Qt::CaseInsensitive));
 }
 
 void MainWindow::initDatabase(sqlite3* db)
 {
-    std::string createTable = "create table NFLPlayers (Key INTEGER PRIMARY KEY, Name TEXT NOT NULL, Pos TEXT NOT NULL, Team TEXT);";
+    const std::string createTable = "create table NFLPlayers (Key INTEGER PRIMARY KEY, Name TEXT NOT NULL, Pos TEXT NOT NULL, Team TEXT);";
 
-    int rc1 = sqlite3_exec(db, createTable.c_str(), 0, 0, 0);
-    if(rc1 != SQLITE_OK)
+    if(sqlite3_exec(db, createTable.c_str(), 0, 0, 0) != SQLITE_OK)
     {
         qDebug() << sqlite3_errmsg(db);
     }
@@ -121,6 +144,13 @@ void MainWindow::initDatabase(sqlite3* db)
 
     std::ifstream inFile(tempFile->fileName().toStdString().c_str());
     std::string lineBuf;
+
+
+    if(sqlite3_exec(db, "BEGIN TRANSACTION;", 0, 0, 0) != SQLITE_OK)
+    {
+        qDebug() << sqlite3_errmsg(db);
+    }
+
     while(std::getline(inFile, lineBuf))
     {
         std::istringstream ist(lineBuf);
@@ -144,13 +174,28 @@ void MainWindow::initDatabase(sqlite3* db)
         insert += "\"" + team + "\"";
         insert += ");";
 
-        int rc2 = sqlite3_exec(db, insert.c_str(), 0, 0, 0);
-        if(rc2 != SQLITE_OK)
+        if(sqlite3_exec(db, insert.c_str(), 0, 0, 0) != SQLITE_OK)
         {
             qDebug() << sqlite3_errmsg(db);
         }
     }
+    if(sqlite3_exec(db, "COMMIT;", 0, 0, 0) != SQLITE_OK)
+    {
+        qDebug() << sqlite3_errmsg(db);
+    }
 
     delete tempFile;
+
+    const std::string createOwners= "create table Owners (Key INTEGER PRIMARY KEY, Name TEXT NOT NULL, Team_Name TEXT NOT NULL);";
+    if(sqlite3_exec(db, createOwners.c_str(), 0, 0, 0) != SQLITE_OK)
+    {
+        qDebug() << sqlite3_errmsg(db);
+    }
+}
+
+void MainWindow::createTeamEditor(bool)
+{
+    CreateTeamDialog dialog(this, _ownerModel);
+    dialog.exec();
 }
 

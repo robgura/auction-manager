@@ -56,12 +56,20 @@ QModelIndex PlayerModel::parent(const QModelIndex&) const
 
 int PlayerModel::rowCount(const QModelIndex& index) const
 {
-    return _playerCache.size();
+    if(! index.isValid())
+    {
+        return _playerCache.size();
+    }
+    return 0;
 }
 
 int PlayerModel::columnCount(const QModelIndex& index) const
 {
-    return 3;
+    if(! index.isValid())
+    {
+        return 3;
+    }
+    return 0;
 }
 
 QVariant PlayerModel::data(const QModelIndex& index, int role) const
