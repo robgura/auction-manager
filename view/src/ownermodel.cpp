@@ -5,8 +5,11 @@ using std::endl;
 
 #include "sqlite/sqlite3.h"
 #include "view/ownermodel.h"
+#include "view/confirmdialog.h"
 #include <QDebug>
 #include <assert.h>
+#include <QMimeData>
+#include <QStringList>
 
 class OwnerModel::LoadOwnerHandler
 {
@@ -40,7 +43,7 @@ OwnerModel::OwnerModel(sqlite3* db)
 
 Qt::ItemFlags OwnerModel::flags(const QModelIndex & index) const
 {
-    return Qt::ItemIsSelectable | Qt::ItemIsDragEnabled | Qt::ItemIsEnabled;
+    return Qt::ItemIsSelectable | Qt::ItemIsDropEnabled | Qt::ItemIsEnabled;
 }
 
 QModelIndex OwnerModel::index(int row, int column, const QModelIndex& parent) const
@@ -90,9 +93,53 @@ QVariant OwnerModel::data(const QModelIndex& index, int role) const
                 return QVariant(QString(_ownerCache.at(index.row())._teamName.c_str()));
             }
         }
+        else if(role == KeyRole)
+        {
+            return QVariant(_ownerCache.at(index.row())._key);
+        }
     }
 
     return QVariant();
+}
+
+bool OwnerModel::dropMimeData(const QMimeData* mimeData, Qt::DropAction action, int row, int column, const QModelIndex & parent)
+{
+    // only works if user drops directly on parent
+    if(row != -1)
+    {
+        return false;
+    }
+
+    const int playerKey = atoi(mimeData->data("application/x-nflplayer").constData());
+
+    const int ownerKey = data(parent, KeyRole).toInt();
+
+    cout << "Dropping Player Key " << playerKey << " on Owner Key " << ownerKey << endl;
+
+    ConfirmPurchase p(0, _db, ownerKey, playerKey);
+    if(p.exec() == 1)
+    {
+        cout << "Paid " << p.getPrice() << endl;
+        std::string str_ownerKey = QString::number(ownerKey).toStdString();
+        std::string str_playerKey = QString::number(playerKey).toStdString();
+        std::string str_price = QString::number(p.getPrice()).toStdString();
+        const std::string insert = "insert into OwnerPlayers values ( " + str_ownerKey + ", " + str_playerKey + ", " + str_price + " );";
+        cout << insert << endl;
+        if(sqlite3_exec(_db, insert.c_str(), 0, 0, 0) != SQLITE_OK)
+        {
+            qDebug() << sqlite3_errmsg(_db);
+        }
+    }
+
+
+    return true;
+}
+
+QStringList OwnerModel::mimeTypes() const
+{
+    QStringList types;
+    types << "application/x-nflplayer";
+    return types;
 }
 
 class GetMax
@@ -102,6 +149,7 @@ class GetMax
 
         static int handle(void*, int columns, char** columnData, char** columnNames)
         {
+            max = 0;
             if(columnData[0])
             {
                 max = atoi(columnData[0]);

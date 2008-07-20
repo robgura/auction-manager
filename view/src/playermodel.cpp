@@ -3,6 +3,7 @@
 #include "sqlite/sqlite3.h"
 #include "view/playermodel.h"
 #include <QDebug>
+#include <QMimeData>
 
 class LoadPlayerHandler
 {
@@ -11,7 +12,7 @@ class LoadPlayerHandler
 
         static int handle(void*, int columns, char** columnData, char** columnNames)
         {
-            _players->push_back(Player( columnData[0]
+            _players->push_back(Player( atoi(columnData[0])
                                       , columnData[1]
                                       , columnData[2]
                                       , columnData[3]
@@ -91,6 +92,22 @@ QVariant PlayerModel::data(const QModelIndex& index, int role) const
                 return QVariant(QString(_playerCache.at(index.row())._team.c_str()));
             }
         }
+        else if(role == KeyRole)
+        {
+            return QVariant(_playerCache.at(index.row())._key);
+        }
     }
     return QVariant();
+}
+
+QMimeData* PlayerModel::mimeData(const QModelIndexList& indexes) const
+{
+    QMimeData* mime = 0;
+    if(! indexes.empty())
+    {
+        QVariant key = data(indexes.at(0), KeyRole);
+        mime = new QMimeData();
+        mime->setData("application/x-nflplayer", QString::number(key.toInt()).toAscii());
+    }
+    return mime;
 }

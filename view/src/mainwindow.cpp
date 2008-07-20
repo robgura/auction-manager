@@ -191,6 +191,12 @@ void MainWindow::initDatabase(sqlite3* db)
     {
         qDebug() << sqlite3_errmsg(db);
     }
+
+    const std::string createOwnerPlayer= "create table OwnerPlayers (OwnerKey INTEGER NOT NULL, Playerkey INTEGER NOT NULL, Price INTEGER NOT NULL);";
+    if(sqlite3_exec(db, createOwnerPlayer.c_str(), 0, 0, 0) != SQLITE_OK)
+    {
+        qDebug() << sqlite3_errmsg(db);
+    }
 }
 
 void MainWindow::createTeamEditor(bool)

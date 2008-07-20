@@ -10,6 +10,11 @@ struct sqlite3;
 class PlayerModel : public QAbstractItemModel
 {
     public:
+        enum Role
+        {
+            KeyRole = Qt::UserRole
+        };
+    public:
         PlayerModel(sqlite3* db);
 
         virtual Qt::ItemFlags flags(const QModelIndex & index) const;
@@ -18,6 +23,8 @@ class PlayerModel : public QAbstractItemModel
         virtual int rowCount(const QModelIndex&) const;
         virtual int columnCount(const QModelIndex&) const;
         virtual QVariant data(const QModelIndex&, int) const;
+
+        virtual QMimeData* mimeData(const QModelIndexList& indexes) const;
 
         typedef std::vector<Player> Players;
     private:

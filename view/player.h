@@ -7,7 +7,7 @@
 class Player
 {
     public:
-        Player( const std::string& key
+        Player( int  key
               , const std::string& name
               , const std::string& pos
               , const std::string& team
@@ -19,7 +19,7 @@ class Player
         {
         }
 
-        std::string _key;
+        int _key;
         std::string _name;
         std::string _pos;
         std::string _team;

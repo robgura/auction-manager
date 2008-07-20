@@ -7,12 +7,14 @@
 
 struct sqlite3;
 
-    //sqlite3_exec(db, "insert into Owners values (null, \"Drew\", \"Beta\"); ", 0, 0, 0);
-    //sqlite3_exec(db, "insert into Owners values (null, \"Michelle\", \"Delta\"); ", 0, 0, 0);
-    //sqlite3_exec(db, "insert into Owners values (null, \"Rob\", \"Alpha\"); ", 0, 0, 0);
-    //sqlite3_exec(db, "insert into Owners values (null, \"Zac\", \"Gamma\"); ", 0, 0, 0);
 class OwnerModel : public QAbstractItemModel
 {
+    public:
+        enum Role
+        {
+            KeyRole = Qt::UserRole
+        };
+
     public:
         OwnerModel(sqlite3* db);
 
@@ -22,6 +24,9 @@ class OwnerModel : public QAbstractItemModel
         virtual int rowCount(const QModelIndex&) const;
         virtual int columnCount(const QModelIndex&) const;
         virtual QVariant data(const QModelIndex&, int) const;
+
+        virtual bool dropMimeData(const QMimeData* data, Qt::DropAction action, int row, int column, const QModelIndex & parent);
+        virtual QStringList mimeTypes() const;
 
         void addOwner(const std::string& owner, const std::string& teamName);
 
