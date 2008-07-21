@@ -15,23 +15,32 @@ else(WIN32) # not win32
     set(BUILD_SHARED_LIBS On)
 endif(WIN32)
 
-#include(${CMAKE_SOURCE_DIR}/cmake/smartmoc.cmake)
-#include(${CMAKE_SOURCE_DIR}/cmake/util.cmake)
-#include(${CMAKE_SOURCE_DIR}/cmake/depends.cmake)
-
 # Set fileoutput paths
-#set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-#set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-#link_directories(${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/.)
+set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib)
+
+# CPack
+
+#INCLUDE(InstallRequiredSystemLibraries)
+
+#SET(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_CURRENT_SOURCE_DIR}/ReadMe.txt")
+SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Fantasy Football Auction Manager")
+SET(CPACK_PACKAGE_VENDOR "JRG")
+SET(CPACK_PACKAGE_VERSION_MAJOR "0")
+SET(CPACK_PACKAGE_VERSION_MINOR "1")
+SET(CPACK_PACKAGE_VERSION_PATCH "0")
+SET(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/Copyright.txt")
+
+
+INCLUDE(CPack)
 
 INCLUDE_DIRECTORIES(./)
 
 set(CMAKE_CXX_FLAGS "-g -Wall")
 
 #set(CMAKE_VERBOSE_MAKEFILE true)
-set(CMAKE_SUPPRESS_REGENERATION true)
+#set(CMAKE_SUPPRESS_REGENERATION true)
 
 add_subdirectory(sqlite)
 add_subdirectory(view)
 add_subdirectory(main)
-

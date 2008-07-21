@@ -8,3 +8,5 @@ file(GLOB headers ./*.h)
 file(GLOB srcs ./*.c)
 
 ADD_LIBRARY(${LIB_NAME} ${srcs})
+
+install(TARGETS ${LIB_NAME} DESTINATION lib)

@@ -16,3 +16,5 @@ qt4_wrap_ui(ui_headers ${uis})
 qt4_wrap_cpp(moc_files ${headers})
 
 ADD_LIBRARY(${LIB_NAME} ${ui_headers} ${srcs} ${moc_files})
+
+install(TARGETS ${LIB_NAME} DESTINATION lib)
