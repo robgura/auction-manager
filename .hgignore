@@ -1,0 +1,11 @@
+syntax:glob
+CMakeCache.txt
+*CMakeFiles*
+*.cmake
+Makefile
+ui_*.h
+moc_*
+*.o
+*.so
+qrc_*.cxx
+AuctionManager
