@@ -9,3 +9,6 @@ moc_*
 *.so
 qrc_*.cxx
 AuctionManager
+cscope.*
+tags
+*.acx

@@ -6,35 +6,25 @@
 #include <QDebug>
 #include <QMimeData>
 #include <QStringList>
+#include "view/parsesql.h"
 
-class OwnerModel::LoadOwnerHandler
-{
-    public:
-        static OwnerModel::Owners* _owners;
-
-        static int handle(void*, int columns, char** columnData, char** columnNames)
-        {
-            _owners->push_back(Owner( atoi(columnData[0])
-                                    , columnData[1]
-                                    , columnData[2]
-                                    ));
-            return 0;
-        }
-};
-
-OwnerModel::OwnerModel::Owners* OwnerModel::LoadOwnerHandler::_owners = 0;
 
 OwnerModel::OwnerModel(sqlite3* db)
     : _db(db)
 {
-    LoadOwnerHandler lpHandler;
-    lpHandler._owners = &_ownerCache;
-
     std::string sql = "select * from Owners;";
-    if(sqlite3_exec(db, sql.c_str(), LoadOwnerHandler::handle, 0, 0) != SQLITE_OK)
+    
+    Rows rows = ParseSQL::exec(_db, sql);
+
+    for(Rows::const_iterator iter = rows.begin(); iter != rows.end(); ++iter)
     {
-        qDebug() << sqlite3_errmsg(db);
+        _ownerCache.push_back(Owner( atoi(iter->at(0).c_str())
+                                   , iter->at(1)
+                                   , iter->at(2)
+                                   ));
     }
+
+
 }
 
 Qt::ItemFlags OwnerModel::flags(const QModelIndex & index) const
