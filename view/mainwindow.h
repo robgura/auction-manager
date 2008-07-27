@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "view/ownerinfo.h"
 #include <QMainWindow>
 #include <QSortFilterProxyModel>
 
@@ -27,6 +28,7 @@ class MainWindow : public QMainWindow
         void openProject(bool);
         void playerInputLineEditChange(const QString&);
         void createTeamEditor(bool);
+        void ownerClicked(const QModelIndex&);
 
     private:
         static void initDatabase(sqlite3* db);
@@ -35,6 +37,7 @@ class MainWindow : public QMainWindow
 
     private:
         Ui::MainWindow* _window;
+        OwnerInfo* _ownerInfo;
 
         PlayerModel* _playerModel;
         OwnerModel* _ownerModel;

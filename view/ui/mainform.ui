@@ -33,6 +33,24 @@
          </property>
         </widget>
        </item>
+       <item>
+        <widget class="QFrame" name="ownerInfo" >
+         <property name="frameShape" >
+          <enum>QFrame::Panel</enum>
+         </property>
+         <property name="frameShadow" >
+          <enum>QFrame::Raised</enum>
+         </property>
+         <property name="lineWidth" >
+          <number>3</number>
+         </property>
+         <layout class="QVBoxLayout" >
+          <item>
+           <layout class="QHBoxLayout" />
+          </item>
+         </layout>
+        </widget>
+       </item>
       </layout>
      </widget>
     </item>

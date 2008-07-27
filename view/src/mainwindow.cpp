@@ -14,6 +14,7 @@
 
 MainWindow::MainWindow()
     : _window(new Ui::MainWindow())
+    , _ownerInfo(0)
     , _playerModel(0)
     , _ownerModel(0)
     , _playerProxyModel(0)
@@ -32,6 +33,9 @@ MainWindow::MainWindow()
     assert(v);
 
     v = connect(_window->playerInput, SIGNAL(textChanged(const QString&)), this, SLOT(playerInputLineEditChange(const QString&)));
+    assert(v);
+
+    v = connect(_window->ownerView, SIGNAL(clicked(const QModelIndex&)), this, SLOT(ownerClicked(const QModelIndex&)));
     assert(v);
 
 }
@@ -192,7 +196,7 @@ void MainWindow::initDatabase(sqlite3* db)
         qDebug() << sqlite3_errmsg(db);
     }
 
-    const std::string createOwnerPlayer= "create table OwnerPlayers (OwnerKey INTEGER NOT NULL, Playerkey INTEGER NOT NULL, Price INTEGER NOT NULL);";
+    const std::string createOwnerPlayer= "create table OwnerPlayers (OwnerKey INTEGER NOT NULL, Playerkey INTEGER NOT NULL, TransType INTEGER NON NULL, Price INTEGER NOT NULL);";
     if(sqlite3_exec(db, createOwnerPlayer.c_str(), 0, 0, 0) != SQLITE_OK)
     {
         qDebug() << sqlite3_errmsg(db);
@@ -203,5 +207,12 @@ void MainWindow::createTeamEditor(bool)
 {
     CreateTeamDialog dialog(this, _ownerModel);
     dialog.exec();
+}
+
+void MainWindow::ownerClicked(const QModelIndex& ownerIndex)
+{
+    delete _ownerInfo;
+    _ownerInfo = new OwnerInfo(_window->ownerInfo, ownerIndex.data(OwnerModel::KeyRole).toInt());
+    _window->ownerInfo->layout()->addWidget(_ownerInfo);
 }
 

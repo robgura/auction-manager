@@ -31,6 +31,9 @@ class OwnerModel : public QAbstractItemModel
         void addOwner(const std::string& owner, const std::string& teamName);
 
     private:
+        void purchase(const int ownerKey, const int playerKey, const int price);
+
+    private:
         class LoadOwnerHandler;
 
         sqlite3* _db;

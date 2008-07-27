@@ -1,13 +1,9 @@
-#include <iostream>
-using std::cout;
-using std::cerr;
-using std::endl;
 
 #include "sqlite/sqlite3.h"
-#include "view/ownermodel.h"
 #include "view/confirmdialog.h"
+#include "view/ownermodel.h"
+#include "view/transtypes.h"
 #include <QDebug>
-#include <assert.h>
 #include <QMimeData>
 #include <QStringList>
 
@@ -50,7 +46,7 @@ QModelIndex OwnerModel::index(int row, int column, const QModelIndex& parent) co
 {
     if(! parent.isValid())
     {
-        return createIndex(row, column, row);
+        return createIndex(row, column, _ownerCache.at(row)._key);
     }
     return QModelIndex();
 }
@@ -102,6 +98,20 @@ QVariant OwnerModel::data(const QModelIndex& index, int role) const
     return QVariant();
 }
 
+void OwnerModel::purchase(const int ownerKey, const int playerKey, const int price)
+{
+    std::string str_ownerKey = QString::number(ownerKey).toStdString();
+    std::string str_playerKey = QString::number(playerKey).toStdString();
+    std::string str_price = QString::number(price).toStdString();
+    std::string str_trans = QString::number(Buy).toStdString();
+
+    const std::string insert = "insert into OwnerPlayers values ( " + str_ownerKey + ", " + str_playerKey + ", " + str_trans + ", " + str_price + " );";
+    if(sqlite3_exec(_db, insert.c_str(), 0, 0, 0) != SQLITE_OK)
+    {
+        qDebug() << sqlite3_errmsg(_db);
+    }
+}
+
 bool OwnerModel::dropMimeData(const QMimeData* mimeData, Qt::DropAction action, int row, int column, const QModelIndex & parent)
 {
     // only works if user drops directly on parent
@@ -114,21 +124,10 @@ bool OwnerModel::dropMimeData(const QMimeData* mimeData, Qt::DropAction action, 
 
     const int ownerKey = data(parent, KeyRole).toInt();
 
-    cout << "Dropping Player Key " << playerKey << " on Owner Key " << ownerKey << endl;
-
     ConfirmPurchase p(0, _db, ownerKey, playerKey);
     if(p.exec() == 1)
     {
-        cout << "Paid " << p.getPrice() << endl;
-        std::string str_ownerKey = QString::number(ownerKey).toStdString();
-        std::string str_playerKey = QString::number(playerKey).toStdString();
-        std::string str_price = QString::number(p.getPrice()).toStdString();
-        const std::string insert = "insert into OwnerPlayers values ( " + str_ownerKey + ", " + str_playerKey + ", " + str_price + " );";
-        cout << insert << endl;
-        if(sqlite3_exec(_db, insert.c_str(), 0, 0, 0) != SQLITE_OK)
-        {
-            qDebug() << sqlite3_errmsg(_db);
-        }
+        purchase(ownerKey, playerKey, p.getPrice());
     }
 
 

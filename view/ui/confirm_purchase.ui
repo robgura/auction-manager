@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>367</height>
+    <height>433</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -15,12 +15,24 @@
   <layout class="QVBoxLayout" >
    <item>
     <widget class="QGroupBox" name="groupBox" >
+     <property name="font" >
+      <font>
+       <family>Serif</family>
+      </font>
+     </property>
      <property name="title" >
       <string>Owner</string>
      </property>
      <layout class="QVBoxLayout" >
       <item>
        <widget class="QLabel" name="ownerName" >
+        <property name="font" >
+         <font>
+          <family>Serif</family>
+          <pointsize>13</pointsize>
+          <italic>true</italic>
+         </font>
+        </property>
         <property name="text" >
          <string>Owner Name</string>
         </property>
@@ -31,6 +43,11 @@
       </item>
       <item>
        <widget class="QLabel" name="ownerTeam" >
+        <property name="font" >
+         <font>
+          <family>Serif</family>
+         </font>
+        </property>
         <property name="text" >
          <string>Owner Team Name</string>
         </property>
@@ -44,12 +61,24 @@
    </item>
    <item>
     <widget class="QGroupBox" name="groupBox_2" >
+     <property name="font" >
+      <font>
+       <family>Serif</family>
+      </font>
+     </property>
      <property name="title" >
       <string>Purchase</string>
      </property>
      <layout class="QVBoxLayout" >
       <item>
        <widget class="QLabel" name="playerName" >
+        <property name="font" >
+         <font>
+          <family>Serif</family>
+          <pointsize>14</pointsize>
+          <italic>true</italic>
+         </font>
+        </property>
         <property name="text" >
          <string>Player Name</string>
         </property>
@@ -60,6 +89,11 @@
       </item>
       <item>
        <widget class="QLabel" name="pos" >
+        <property name="font" >
+         <font>
+          <family>Serif</family>
+         </font>
+        </property>
         <property name="text" >
          <string>Pos</string>
         </property>
@@ -70,6 +104,11 @@
       </item>
       <item>
        <widget class="QLabel" name="playerTeam" >
+        <property name="font" >
+         <font>
+          <family>Serif</family>
+         </font>
+        </property>
         <property name="text" >
          <string>Team</string>
         </property>
@@ -83,8 +122,23 @@
    </item>
    <item>
     <widget class="QSpinBox" name="spinBox" >
+     <property name="font" >
+      <font>
+       <family>Serif</family>
+       <pointsize>36</pointsize>
+      </font>
+     </property>
+     <property name="alignment" >
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="buttonSymbols" >
+      <enum>QAbstractSpinBox::PlusMinus</enum>
+     </property>
      <property name="prefix" >
       <string>$</string>
+     </property>
+     <property name="minimum" >
+      <number>1</number>
      </property>
      <property name="maximum" >
       <number>9999999</number>
@@ -93,12 +147,24 @@
    </item>
    <item>
     <widget class="QGroupBox" name="groupBox_3" >
+     <property name="font" >
+      <font>
+       <family>Serif</family>
+      </font>
+     </property>
      <property name="title" >
       <string>Status</string>
      </property>
      <layout class="QVBoxLayout" >
       <item>
        <widget class="QLabel" name="status" >
+        <property name="font" >
+         <font>
+          <family>Serif</family>
+          <pointsize>14</pointsize>
+          <italic>true</italic>
+         </font>
+        </property>
         <property name="text" >
          <string>Accepted</string>
         </property>
@@ -109,6 +175,11 @@
       </item>
       <item>
        <widget class="QLabel" name="reason" >
+        <property name="font" >
+         <font>
+          <family>Serif</family>
+         </font>
+        </property>
         <property name="text" >
          <string>Reason</string>
         </property>
@@ -119,6 +190,11 @@
    </item>
    <item>
     <widget class="QDialogButtonBox" name="buttonBox" >
+     <property name="font" >
+      <font>
+       <family>Serif</family>
+      </font>
+     </property>
      <property name="orientation" >
       <enum>Qt::Horizontal</enum>
      </property>
