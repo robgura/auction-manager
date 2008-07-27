@@ -212,7 +212,7 @@ void MainWindow::createTeamEditor(bool)
 void MainWindow::ownerClicked(const QModelIndex& ownerIndex)
 {
     delete _ownerInfo;
-    _ownerInfo = new OwnerInfo(_window->ownerInfo, ownerIndex.data(OwnerModel::KeyRole).toInt());
+    _ownerInfo = new OwnerInfo(_window->ownerInfo, _db, ownerIndex.data(OwnerModel::KeyRole).toInt());
     _window->ownerInfo->layout()->addWidget(_ownerInfo);
 }
 

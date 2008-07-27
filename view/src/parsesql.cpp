@@ -33,3 +33,16 @@ Rows ParseSQL::exec(sqlite3* db, const std::string& sql)
 
     return Info::rows;
 }
+
+std::ostream& operator<<(std::ostream& os, const Rows& rows)
+{
+    for(Rows::const_iterator iter = rows.begin(); iter != rows.end(); ++iter)
+    {
+        for(Row::const_iterator jiter = iter->begin(); jiter != iter->end(); ++jiter)
+        {
+            os << *jiter << ", ";
+        }
+        os << std::endl;
+    }
+    return os;
+}

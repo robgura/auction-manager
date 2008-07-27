@@ -87,7 +87,26 @@
     </layout>
    </item>
    <item>
-    <widget class="QTreeView" name="transactionView" />
+    <widget class="QTreeWidget" name="treeWidget" >
+     <property name="columnCount" >
+      <number>3</number>
+     </property>
+     <column>
+      <property name="text" >
+       <string>Player</string>
+      </property>
+     </column>
+     <column>
+      <property name="text" >
+       <string>Position</string>
+      </property>
+     </column>
+     <column>
+      <property name="text" >
+       <string>Price</string>
+      </property>
+     </column>
+    </widget>
    </item>
   </layout>
  </widget>
