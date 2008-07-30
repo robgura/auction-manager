@@ -3,7 +3,7 @@
 8311#Victor Abiamiri#DE#Philadelphia Eagles#
 5042#John Abraham#DE#Atlanta Falcons#
 6393#Anthony Adams#DT#Chicago Bears#
-6556#Blue Adams#CB#Cincinnati Bengals#
+6556#Blue Adams#CB#Atlanta Falcons#
 6327#Charlie Adams#WR#Houston Texans#
 8999#Chester Adams#T#Chicago Bears#
 8222#Darrell Adams#DE#New York Jets#
@@ -13,7 +13,7 @@
 8650#Michael Adams#CB#Arizona Cardinals#
 7121#Mike Adams#S#Cleveland Browns#
 2825#Sam Adams#DT#Denver Broncos#
-7969#Titus Adams#DT#Cincinnati Bengals#
+7969#Titus Adams#DT#New England Patriots#
 7779#Joseph Addai#RB#Indianapolis Colts#
 7862#Victor Adeyanju#DE#St. Louis Rams#
 6904#Nathaniel Adibi#DE#Tennessee Titans#
@@ -200,7 +200,7 @@
 7180#Cedric Benson#RB#Chicago Bears#
 5987#Kevin Bentley#LB#Houston Texans#
 5930#LeCharles Bentley#C#Cleveland Browns#
-7435#Adam Bergen#TE#Dallas Cowboys#
+7435#Adam Bergen#TE#Baltimore Ravens#
 7383#Joe Berger#G#Dallas Cowboys#
 2861#Mitch Berger#P#Arizona Cardinals#
 8656#Brock Berlin#QB#St. Louis Rams#
@@ -212,7 +212,7 @@
 8103#Josh Betts#QB#Indianapolis Colts#
 5942#Ladell Betts#RB#Washington Redskins#
 4249#Eric Beverly#TE#Detroit Lions#
-8067#Taye Biddle#WR#Tampa Bay Buccaneers#
+8067#Taye Biddle#WR#Detroit Lions#
 4783#Josh Bidwell#P#Tampa Bay Buccaneers#
 8251#Troy Bienemann#TE#Arizona Cardinals#
 8931#Kroy Biermann#LB#Atlanta Falcons#
@@ -353,7 +353,7 @@
 2415#Troy Brown#WR#New England Patriots#
 3627#John Browning#DT#Denver Broncos#
 2914#Isaac Bruce#WR#San Francisco 49ers#
-8721#Mkristo Bruce#DE#Oakland Raiders#
+8721#Mkristo Bruce#DE#Jacksonville Jaguars#
 3129#Mark Bruener#TE#Houston Texans#
 2485#Mark Brunell#QB#New Orleans Saints#
 3571#Tedy Bruschi#LB#New England Patriots#
@@ -368,7 +368,7 @@
 4736#Shawn Bryson#RB#Detroit Lions#
 6918#Sean Bubin#T#New England Patriots#
 5903#Phillip Buchanon#CB#Tampa Bay Buccaneers#
-8136#William Buchanon#WR#Oakland Raiders#
+8136#William Buchanon#WR#Carolina Panthers#
 5569#Correll Buckhalter#RB#Philadelphia Eagles#
 8685#Eldra Buckley#RB#San Diego Chargers#
 7283#Dan Buenning#G#Tampa Bay Buccaneers#
@@ -434,7 +434,7 @@
 5887#David Carr#QB#New York Giants#
 8267#Adam Carriker#DT#St. Louis Rams#
 8027#Paul Carrington#DE#Denver Broncos#
-6784#Ahmad Carroll#CB#Jacksonville Jaguars#
+6784#Ahmad Carroll#CB#New York Jets#
 7098#Jordan Carstens#DT#Carolina Panthers#
 5454#Andre Carter#DE#Washington Redskins#
 6922#Drew Carter#WR#Oakland Raiders#
@@ -488,7 +488,7 @@
 6360#Dallas Clark#TE#Indianapolis Colts#
 5275#Danny Clark#LB#New York Giants#
 4829#Desmond Clark#TE#Chicago Bears#
-8581#Jeremy Clark#DT#Philadelphia Eagles#
+8581#Jeremy Clark#DT#New York Giants#
 6210#Ryan Clark#S#Pittsburgh Steelers#
 6986#Adrien Clarke#G#Baltimore Ravens#
 7936#Jeromey Clary#T#San Diego Chargers#
@@ -498,7 +498,7 @@
 6774#Michael Clayton#WR#Tampa Bay Buccaneers#
 8440#Thomas Clayton#RB#San Francisco 49ers#
 7798#Kellen Clemens#QB#New York Jets#
-4296#Anthony Clement#T#New York Jets#
+4296#Anthony Clement#T#New England Patriots#
 5468#Nate Clements#CB#San Francisco 49ers#
 6704#Chris Clemons#DE#Philadelphia Eagles#
 7484#Nic Clemons#DE#Denver Broncos#
@@ -608,7 +608,7 @@
 6410#Kevin Curtis#WR#Philadelphia Eagles#
 7581#Tony Curtis#TE#Dallas Cowboys#
 7760#Jay Cutler#QB#Denver Broncos#
-8752#Omowale Dada#CB#Seattle Seahawks#
+8752#Wale Dada#CB#New Orleans Saints#
 8568#Craig Dahl#S#New York Giants#
 7663#Harvey Dahl#T#Atlanta Falcons#
 8600#Brian Daniels#G#Minnesota Vikings#
@@ -767,7 +767,7 @@
 5064#John Engelberger#DE#Denver Broncos#
 3512#Bobby Engram#WR#Seattle Seahawks#
 7693#Jamar Enzor#LB#Baltimore Ravens#
-7415#Paul Ernster#P#Detroit Lions#
+7415#Paul Ernster#P#Pittsburgh Steelers#
 8590#Tala Esera#G#Indianapolis Colts#
 7947#Greg Eslinger#C#Houston Texans#
 8163#Mike Espy#WR#Washington Redskins#
@@ -834,7 +834,7 @@
 4898#Bryce Fisher#DE#Tennessee Titans#
 6151#Tony Fisher#RB#New York Jets#
 5950#Travis Fisher#CB#Detroit Lions#
-8240#Zarnell Fitch#DT#Baltimore Ravens#
+8240#Zarnell Fitch#DT#Washington Redskins#
 6762#Larry Fitzgerald#WR#Arizona Cardinals#
 7426#Ryan Fitzpatrick#QB#Cincinnati Bengals#
 6621#Casey FitzSimmons#TE#Detroit Lions#
@@ -865,7 +865,7 @@
 5920#DeShaun Foster#RB#San Francisco 49ers#
 6356#George Foster#T#Detroit Lions#
 8554#Renardo Foster#G#Atlanta Falcons#
-8761#Eric Fowler#WR#St. Louis Rams#
+8761#Eric Fowler#WR#Detroit Lions#
 5962#Melvin Fowler#C#Buffalo Bills#
 7101#Ryan Fowler#LB#Tennessee Titans#
 7256#Dustin Fox#CB#Buffalo Bills#
@@ -939,14 +939,14 @@
 8769#Patrick Ghee#S#Washington Redskins#
 7575#Ronnie Ghent#TE#New Orleans Saints#
 7295#Eric Ghiaciuc#C#Cincinnati Bengals#
-8783#Vernon Gholston#DE#New York Jets#
+8783#Vernon Gholston#LB#New York Jets#
 8927#Breno Giacomini#T#Green Bay Packers#
 8169#Ryan Gibbons#T#Dallas Cowboys#
 7307#Fred Gibson#WR#New York Giants#
 8633#Gary Gibson#DT#Carolina Panthers#
 8961#Mike Gibson#T#Philadelphia Eagles#
 6546#Tony Gilbert#LB#Jacksonville Jaguars#
-5437#Bryan Gilmore#WR#San Francisco 49ers#
+5437#Bryan Gilmore#WR#Seattle Seahawks#
 6131#John Gilmore#TE#Tampa Bay Buccaneers#
 8263#Ted Ginn Jr.#WR#Miami Dolphins#
 7311#Matt Giordano#S#Indianapolis Colts#
@@ -996,7 +996,7 @@
 8991#Larry Grant#LB#San Francisco 49ers#
 7635#Ryan Grant#RB#Green Bay Packers#
 2551#Chris Gray#G#Seattle Seahawks#
-6177#Quinn Gray#QB#Houston Texans#
+6177#Quinn Gray#QB#Indianapolis Colts#
 8842#John Greco#T#St. Louis Rams#
 4261#Ahman Green#RB#Houston Texans#
 6512#Brandon Green#DE#Seattle Seahawks#
@@ -1041,7 +1041,7 @@
 7500#Gregg Guenther#TE#Cincinnati Bengals#
 8204#Alex Guerrero#DT#Minnesota Vikings#
 8929#Letroy Guion#DT#Minnesota Vikings#
-8576#Marquies Gunn#DE#Tampa Bay Buccaneers#
+8576#Marquies Gunn#DE#New Orleans Saints#
 5923#Andre Gurode#C#Dallas Cowboys#
 8539#Matt Gutierrez#QB#New England Patriots#
 8570#Ramon Guzman#LB#Indianapolis Colts#
@@ -1118,8 +1118,8 @@
 7882#Orien Harris#DT#New Orleans Saints#
 6289#Quentin Harris#S#Denver Broncos#
 8324#Ryan Harris#T#Denver Broncos#
-8674#Steven Harris#DT#Denver Broncos#
 7680#Steven Harris#WR#Washington Redskins#
+8674#Steven Harris#DT#Denver Broncos#
 6773#Tommie Harris#DT#Chicago Bears#
 8618#Tuff Harris#CB#New Orleans Saints#
 3523#Walt Harris#CB#San Francisco 49ers#
@@ -1220,7 +1220,7 @@
 8920#Tony Hills#T#Pittsburgh Steelers#
 6647#Zachary Hilton#TE#San Francisco 49ers#
 7879#Domenik Hixon#WR#New York Giants#
-6598#Ryan Hoag#WR#Washington Redskins#
+6598#Ryan Hoag#WR#Jacksonville Jaguars#
 7260#Ellis Hobbs#CB#New England Patriots#
 8213#Kevin Hobbs#CB#Seattle Seahawks#
 6389#Victor Hobson#LB#New England Patriots#
@@ -1310,12 +1310,12 @@
 7783#D'Qwell Jackson#LB#Cleveland Browns#
 5109#Darrell Jackson#WR#Denver Broncos#
 8826#DeSean Jackson#WR#Philadelphia Eagles#
-4763#Dexter Jackson#S#Cincinnati Bengals#
 8835#Dexter Jackson#WR#Tampa Bay Buccaneers#
+4763#Dexter Jackson#S#Cincinnati Bengals#
 7107#Eddie Jackson#CB#Washington Redskins#
 8063#Fred Jackson#RB#Buffalo Bills#
 6200#Frisman Jackson#WR#New York Jets#
-4156#Grady Jackson#DT#Jacksonville Jaguars#
+4156#Grady Jackson#DT#Atlanta Falcons#
 6759#Jamaal Jackson#C#Philadelphia Eagles#
 8502#Keith Jackson#DT#San Diego Chargers#
 8805#Lawrence Jackson#DE#Seattle Seahawks#
@@ -1324,8 +1324,8 @@
 6750#Nate Jackson#TE#Denver Broncos#
 9019#Rob Jackson#DE#Washington Redskins#
 7518#Scott Jackson#G#Houston Texans#
-6783#Steven Jackson#RB#St. Louis Rams#
 8068#Steven Jackson#RB#Kansas City Chiefs#
+6783#Steven Jackson#RB#St. Louis Rams#
 8029#T.J. Jackson#DT#Kansas City Chiefs#
 8360#Tanard Jackson#S#Tampa Bay Buccaneers#
 7813#Tarvaris Jackson#QB#Minnesota Vikings#
@@ -1367,7 +1367,7 @@
 8675#Cameron Jensen#LB#Seattle Seahawks#
 6996#Erik Jensen#TE#Cincinnati Bengals#
 6671#Ade Jimoh#CB#Chicago Bears#
-6871#Leon Joe#LB#Tampa Bay Buccaneers#
+6871#Leon Joe#LB#Detroit Lions#
 8110#Adam Johnson#TE#Tampa Bay Buccaneers#
 6374#Al Johnson#C#Arizona Cardinals#
 6339#Andre Johnson#WR#Houston Texans#
@@ -1379,16 +1379,16 @@
 5441#Bryan Johnson#RB#Chicago Bears#
 6353#Bryant Johnson#WR#San Francisco 49ers#
 8256#Calvin Johnson#WR#Detroit Lions#
-8603#Chad Johnson#S#Kansas City Chiefs#
 5483#Chad Johnson#WR#Cincinnati Bengals#
+8603#Chad Johnson#S#Kansas City Chiefs#
 8337#Charles Johnson#DE#Carolina Panthers#
 7948#Charlie Johnson#T#Indianapolis Colts#
 8564#Chase Johnson#T#Minnesota Vikings#
-8801#Chris Johnson#RB#Tennessee Titans#
 6581#Chris Johnson#CB#Oakland Raiders#
+8801#Chris Johnson#RB#Tennessee Titans#
 8127#Darcy Johnson#TE#New York Giants#
-7191#Derrick Johnson#LB#Kansas City Chiefs#
 7381#Derrick Johnson#CB#Houston Texans#
+7191#Derrick Johnson#LB#Kansas City Chiefs#
 6248#Dirk Johnson#P#Arizona Cardinals#
 5304#Doug Johnson#QB#Cincinnati Bengals#
 8527#Ed Johnson#DT#Indianapolis Colts#
@@ -1452,8 +1452,8 @@
 7809#Maurice Jones-Drew#RB#Jacksonville Jaguars#
 6377#Ben Joppru#TE#Seattle Seahawks#
 8583#Akeem Jordan#LB#Philadelphia Eagles#
-5496#LaMont Jordan#RB#Oakland Raiders#
-5111#Leander Jordan#T#Atlanta Falcons#
+5496#LaMont Jordan#RB#New England Patriots#
+5111#Leander Jordan#T#Jacksonville Jaguars#
 7772#Davin Joseph#G#Tampa Bay Buccaneers#
 7773#Johnathan Joseph#CB#Cincinnati Bengals#
 7629#Keith Joseph#RB#New Orleans Saints#
@@ -1541,7 +1541,7 @@
 7562#Mike Kracalik#T#Baltimore Ravens#
 6953#Matt Kranchick#TE#New England Patriots#
 6928#Ryan Krause#TE#Houston Texans#
-5399#Dan Kreider#RB#Pittsburgh Steelers#
+5399#Dan Kreider#RB#St. Louis Rams#
 4474#Olin Kreutz#C#Chicago Bears#
 4827#Clint Kriewaldt#LB#Pittsburgh Steelers#
 8124#E.J. Kuale#LB#Kansas City Chiefs#
@@ -1585,14 +1585,14 @@
 6947#Andy Lee#P#San Francisco 49ers#
 6492#Donald Lee#TE#Green Bay Packers#
 8217#Greg Lee#WR#Detroit Lions#
-8837#Patrick Lee#DB#Green Bay Packers#
+8837#Patrick Lee#CB#Green Bay Packers#
 7023#ReShard Lee#RB#Oakland Raiders#
 8096#Travis Leffew#G#Kansas City Chiefs#
 7979#Kili Lefotu#G#Washington Redskins#
 6343#Byron Leftwich#QB#Atlanta Falcons#
 5783#Lance Legree#DT#New Orleans Saints#
 6488#Michael Lehan#CB#Miami Dolphins#
-6796#Teddy Lehman#LB#Tampa Bay Buccaneers#
+6796#Teddy Lehman#LB#Detroit Lions#
 5585#Matt Lehr#G#New Orleans Saints#
 7759#Matt Leinart#QB#Arizona Cardinals#
 6898#Rodney Leisle#DT#New York Giants#
@@ -1617,8 +1617,8 @@
 7926#Jonathan Lewis#DT#Detroit Lions#
 6957#Keith Lewis#S#San Francisco 49ers#
 7777#Marcedes Lewis#TE#Jacksonville Jaguars#
-5725#Michael Lewis#WR#San Francisco 49ers#
 5944#Michael Lewis#S#San Francisco 49ers#
+5725#Michael Lewis#WR#San Francisco 49ers#
 3542#Ray Lewis#LB#Baltimore Ravens#
 8439#Trey Lewis#DT#Atlanta Falcons#
 8885#Kory Lichtensteiger#G#Denver Broncos#
@@ -1646,13 +1646,13 @@
 5316#Dane Looker#WR#St. Louis Rams#
 7326#Daniel Loper#T#Tennessee Titans#
 8216#Mike Lorello#S#Pittsburgh Steelers#
-7472#Jared Lorenzen#QB#New York Giants#
+7472#Jared Lorenzen#QB#Indianapolis Colts#
 6781#J.P. Losman#QB#Buffalo Bills#
 7167#Pete Lougheed#T#Dallas Cowboys#
 8631#Cliff Louis#T#Cleveland Browns#
 8619#Marquay Love#DT#New Orleans Saints#
 8777#Kevin Lovell#K#Atlanta Falcons#
-8707#Todd Lowber#WR#New York Giants#
+8707#Todd Lowber#WR#Dallas Cowboys#
 6047#Omare Lowe#S#Seattle Seahawks#
 8890#Dwight Lowery#CB#New York Jets#
 7851#Calvin Lowry#S#Tennessee Titans#
@@ -1702,7 +1702,7 @@
 5299#Lemar Marshall#LB#Cincinnati Bengals#
 7350#Rasheed Marshall#WR#St. Louis Rams#
 7807#Richard Marshall#CB#Carolina Panthers#
-8511#Timon Marshall#WR#Chicago Bears#
+8511#Timon Marshall#WR#Kansas City Chiefs#
 8321#James Marten#T#Dallas Cowboys#
 5646#David Martin#TE#Miami Dolphins#
 7957#Derrick Martin#CB#Baltimore Ravens#
@@ -1723,7 +1723,7 @@
 6474#Robert Mathis#DE#Indianapolis Colts#
 8080#Wendell Mathis#RB#Minnesota Vikings#
 8569#Michael Matthews#TE#New York Giants#
-7966#Fred Matua#G#Tennessee Titans#
+7966#Fred Matua#G#Washington Redskins#
 8435#Reagan Mauia#RB#Miami Dolphins#
 2826#Kevin Mawae#C#Tennessee Titans#
 7903#Marcus Maxey#CB#Kansas City Chiefs#
@@ -1744,6 +1744,7 @@
 8308#Turk McBride#DT#Kansas City Chiefs#
 6034#Kevin McCadam#S#Jacksonville Jaguars#
 7928#Dee McCann#S#Minnesota Vikings#
+5602#Darnerien McCants#WR#Baltimore Ravens#
 2014#Keenan McCardell#WR#Washington Redskins#
 5572#Justin McCareins#WR#Tennessee Titans#
 7775#John McCargo#DT#Buffalo Bills#
@@ -1802,7 +1803,7 @@
 4325#Steve McKinney#C#Miami Dolphins#
 5893#Bryant McKinnie#T#Minnesota Vikings#
 8004#Kevin McMahan#WR#Kansas City Chiefs#
-7390#Pete McMahon#T#Jacksonville Jaguars#
+7390#Pete McMahon#T#New England Patriots#
 6000#Randy McMichael#TE#St. Louis Rams#
 7315#David McMillan#LB#Cleveland Browns#
 6431#Billy McMullen#WR#Washington Redskins#
@@ -1870,8 +1871,8 @@
 7902#Anthony Montgomery#DT#Washington Redskins#
 7356#Mike Montgomery#DE#Green Bay Packers#
 7983#Will Montgomery#C#New York Jets#
-6706#Brandon Moore#G#New York Jets#
 6253#Brandon Moore#LB#San Francisco 49ers#
+6706#Brandon Moore#G#New York Jets#
 6958#Clarence Moore#WR#Baltimore Ravens#
 2299#Dave Moore#TE#Tampa Bay Buccaneers#
 8713#DonTrell Moore#RB#Tampa Bay Buccaneers#
@@ -1922,14 +1923,14 @@
 4779#Edwin Mulitalo#G#Detroit Lions#
 8971#Ryan Mundy#S#Pittsburgh Steelers#
 8236#Jason Murphy#G#Tennessee Titans#
-6114#Matt Murphy#TE#Buffalo Bills#
+6114#Matt Murphy#T#Buffalo Bills#
 8176#Montez Murphy#DE#Kansas City Chiefs#
 8887#Shawn Murphy#T#Miami Dolphins#
 8584#Marques Murrell#LB#New York Jets#
 6700#Chad Mustard#TE#Denver Broncos#
 7376#Chris Myers#C#Houston Texans#
 4330#Michael Myers#DT#Cincinnati Bengals#
-8426#Legedu Naanee#WR#San Diego Chargers#
+8426#Legedu Naanee#TE#San Diego Chargers#
 3934#Chris Naeole#G#Jacksonville Jaguars#
 8983#Haruki Nakamura#S#Baltimore Ravens#
 2799#Tom Nalen#C#Denver Broncos#
@@ -2017,7 +2018,7 @@
 8082#Buck Ortega#TE#New Orleans Saints#
 7282#Kyle Orton#QB#Chicago Bears#
 6664#Kassim Osgood#WR#San Diego Chargers#
-7930#Babatunde Oshinowo#DT#Chicago Bears#
+7930#Babatunde Oshinowo#DT#Washington Redskins#
 8796#Jeff Otah#T#Carolina Panthers#
 8768#Jeff Otis#QB#Oakland Raiders#
 8477#Mike Otto#T#Tennessee Titans#
@@ -2034,7 +2035,7 @@
 5946#Anton Palepoi#DE#New Orleans Saints#
 8639#Tyler Palko#QB#New Orleans Saints#
 6337#Carson Palmer#QB#Cincinnati Bengals#
-8704#Jonathan Palmer#T#Oakland Raiders#
+8704#Jonathan Palmer#T#New York Giants#
 8459#Jordan Palmer#QB#Cincinnati Bengals#
 7992#Tony Palmer#G#Green Bay Packers#
 6980#Tony Pape#T#San Diego Chargers#
@@ -2086,8 +2087,8 @@
 7122#Jason Peters#T#Buffalo Bills#
 8717#Leonard Peters#S#Chicago Bears#
 6010#Scott Peters#C#Arizona Cardinals#
-8261#Adrian Peterson#RB#Minnesota Vikings#
 6134#Adrian Peterson#RB#Chicago Bears#
+8261#Adrian Peterson#RB#Minnesota Vikings#
 8395#Greg Peterson#DT#Tampa Bay Buccaneers#
 5045#Julian Peterson#LB#Seattle Seahawks#
 6415#Kenny Peterson#DE#Denver Broncos#
@@ -2097,7 +2098,7 @@
 8228#Jamie Petrowski#TE#Tennessee Titans#
 7403#Kenneth Pettway#LB#Jacksonville Jaguars#
 7950#Marvin Philip#C#Cleveland Browns#
-8005#Anwar Phillips#CB#New Orleans Saints#
+8005#Anwar Phillips#CB#Baltimore Ravens#
 6043#Jermaine Phillips#S#Tampa Bay Buccaneers#
 8808#Kenny Phillips#S#New York Giants#
 6857#Shaun Phillips#LB#San Diego Chargers#
@@ -2233,7 +2234,7 @@
 7388#Ryan Riddle#LB#Baltimore Ravens#
 7528#Brandon Rideau#WR#Chicago Bears#
 7368#Dante Ridgeway#WR#New Orleans Saints#
-8637#Rueben Riley#G#Carolina Panthers#
+8637#Rueben Riley#G#Miami Dolphins#
 7005#Brian Rimpf#G#Baltimore Ravens#
 8873#Chad Rinehart#G#Washington Redskins#
 3811#Marco Rivera#G#Dallas Cowboys#
@@ -2422,7 +2423,7 @@
 5763#Marcel Shipp#RB#Arizona Cardinals#
 8911#Jason Shirley#DT#Cincinnati Bengals#
 6911#Jeff Shoate#CB#New York Giants#
-5900#Jeremy Shockey#TE#New York Giants#
+5900#Jeremy Shockey#TE#New Orleans Saints#
 7972#D.J. Shockley#QB#Atlanta Falcons#
 8766#Alex Shor#TE#Arizona Cardinals#
 7030#Jason Short#LB#Cleveland Browns#
@@ -2455,8 +2456,8 @@
 5121#T.J. Slaughter#LB#New England Patriots#
 6805#Justin Smiley#G#Miami Dolphins#
 4759#Aaron Smith#DE#Pittsburgh Steelers#
-7247#Alex Smith#TE#Tampa Bay Buccaneers#
 7177#Alex Smith#QB#San Francisco 49ers#
+7247#Alex Smith#TE#Tampa Bay Buccaneers#
 8214#Alvin Smith#DT#Cleveland Browns#
 7832#Anthony Smith#S#Pittsburgh Steelers#
 6894#Antonio Smith#DE#Arizona Cardinals#
@@ -2482,8 +2483,8 @@
 7937#Kurt Smith#K#Seattle Seahawks#
 6397#L.J. Smith#TE#Philadelphia Eagles#
 7955#Le Kevin Smith#DT#New England Patriots#
-8575#Marcus Smith#DE#Dallas Cowboys#
 8883#Marcus Smith#WR#Baltimore Ravens#
+8575#Marcus Smith#DE#Dallas Cowboys#
 5067#Marvel Smith#T#Pittsburgh Steelers#
 7410#Mike Smith#LB#Baltimore Ravens#
 6413#Musa Smith#RB#New York Jets#
@@ -2498,8 +2499,8 @@
 8460#Ryan Smith#CB#Tennessee Titans#
 8747#Shaine Smith#WR#St. Louis Rams#
 6695#Shaun Smith#DT#Cleveland Browns#
-8305#Steve Smith#WR#New York Giants#
 5521#Steve Smith#WR#Carolina Panthers#
+8305#Steve Smith#WR#New York Giants#
 5125#Terrelle Smith#RB#Arizona Cardinals#
 8517#Thomas Smith#DT#Houston Texans#
 8428#Troy Smith#QB#Baltimore Ravens#
@@ -2525,7 +2526,7 @@
 7196#Marcus Spears#DE#Dallas Cowboys#
 7352#Nick Speegle#LB#Cleveland Browns#
 8280#Anthony Spencer#LB#Dallas Cowboys#
-7814#Charles Spencer#T#Houston Texans#
+7814#Charles Spencer#T#Carolina Panthers#
 7202#Chris Spencer#C#Seattle Seahawks#
 6941#Cody Spencer#LB#New York Jets#
 6817#Shawntae Spencer#CB#San Francisco 49ers#
@@ -2564,7 +2565,7 @@
 8210#Adam Stenavich#G#Dallas Cowboys#
 6859#Alex Stepanovich#C#Atlanta Falcons#
 6247#Leonard Stephens#TE#Tennessee Titans#
-8410#Cameron Stephenson#G#Green Bay Packers#
+8410#Cameron Stephenson#G#Philadelphia Eagles#
 8488#Syndric Steptoe#WR#Cleveland Browns#
 2893#Todd Steussie#T#St. Louis Rams#
 8862#Craig Stevens#TE#Tennessee Titans#
@@ -2624,15 +2625,15 @@
 7221#Lofa Tatupu#LB#Seattle Seahawks#
 5253#Mark Tauscher#T#Green Bay Packers#
 6142#Chester Taylor#RB#Minnesota Vikings#
-5666#Chris Taylor#WR#Houston Texans#
 8101#Chris Taylor#RB#Houston Texans#
+5666#Chris Taylor#WR#Houston Texans#
 8451#Courtney Taylor#WR#Seattle Seahawks#
 6971#Eric Taylor#DT#Tennessee Titans#
 4259#Fred Taylor#RB#Jacksonville Jaguars#
 8450#Herb Taylor#T#Kansas City Chiefs#
 8998#Hilee Taylor#LB#Carolina Panthers#
 6461#Ike Taylor#CB#Pittsburgh Steelers#
-3968#Jason Taylor#DE#Miami Dolphins#
+3968#Jason Taylor#DE#Washington Redskins#
 6764#Sean Taylor#S#Washington Redskins#
 8566#Tony Taylor#LB#Atlanta Falcons#
 5039#Travis Taylor#WR#Carolina Panthers#
@@ -2668,7 +2669,7 @@
 5917#Robert Thomas#LB#Oakland Raiders#
 7625#Santonio Thomas#DT#New England Patriots#
 8840#Terrell Thomas#CB#New York Giants#
-4276#William Thomas#T#Philadelphia Eagles#
+4276#Tra Thomas#T#Philadelphia Eagles#
 3569#Zach Thomas#LB#Dallas Cowboys#
 6388#Chaun Thompson#LB#Houston Texans#
 6909#Chris Thompson#CB#Buffalo Bills#
@@ -2703,7 +2704,7 @@
 8905#Ryan Torain#RB#Denver Broncos#
 6856#Reggie Torbor#LB#Miami Dolphins#
 7503#Leigh Torrence#CB#Washington Redskins#
-8145#Brandon Torrey#T#New York Giants#
+8145#Brandon Torrey#T#Tennessee Titans#
 7911#Michael Toudouze#T#Indianapolis Colts#
 4346#Deshea Townsend#CB#Pittsburgh Steelers#
 8653#Matt Trannon#WR#Pittsburgh Steelers#
@@ -2790,7 +2791,7 @@
 4498#Mike Wahle#G#Seattle Seahawks#
 5766#Fred Wakefield#TE#Oakland Raiders#
 8944#Erik Walden#DE#Dallas Cowboys#
-6497#Aaron Walker#TE#St. Louis Rams#
+6497#Aaron Walker#TE#Baltimore Ravens#
 8646#Darius Walker#RB#Houston Texans#
 5100#Darwin Walker#DT#Carolina Panthers#
 7924#Delanie Walker#TE#San Francisco 49ers#
@@ -2869,8 +2870,8 @@
 7010#Scott Wells#C#Green Bay Packers#
 8438#John Wendling#S#Buffalo Bills#
 5986#Dante Wesley#CB#Carolina Panthers#
-5114#Greg Wesley#S#Kansas City Chiefs#
-8711#Zach West#DT#Cleveland Browns#
+5114#Greg Wesley#S#Oakland Raiders#
+8711#Zach West#DT#New England Patriots#
 5977#Brian Westbrook#RB#Philadelphia Eagles#
 8588#Byron Westbrook#CB#Washington Redskins#
 6853#Travelle Wharton#T#Carolina Panthers#
@@ -2930,11 +2931,11 @@
 8897#Jack Williams#CB#Denver Broncos#
 4497#Jamal Williams#DT#San Diego Chargers#
 7869#Jamar Williams#LB#Chicago Bears#
-7786#Jimmy Williams#S#Atlanta Falcons#
 5644#Jimmy Williams#CB#Houston Texans#
+7786#Jimmy Williams#S#Atlanta Falcons#
 6345#Kevin Williams#DT#Minnesota Vikings#
-8714#Kyle Williams#T#Seattle Seahawks#
 7883#Kyle Williams#DT#Buffalo Bills#
+8714#Kyle Williams#T#Seattle Seahawks#
 7859#Leon Williams#LB#Cleveland Browns#
 6815#Madieu Williams#S#Minnesota Vikings#
 7750#Mario Williams#DE#Houston Texans#
@@ -2945,8 +2946,8 @@
 5770#Randal Williams#TE#Oakland Raiders#
 6768#Reggie Williams#WR#Jacksonville Jaguars#
 4653#Ricky Williams#RB#Miami Dolphins#
-5894#Roy Williams#S#Dallas Cowboys#
 6766#Roy Williams#WR#Detroit Lions#
+5894#Roy Williams#S#Dallas Cowboys#
 7312#Roydell Williams#WR#Tennessee Titans#
 6419#Sam Williams#LB#Oakland Raiders#
 7034#Shaud Williams#RB#Buffalo Bills#
@@ -2972,7 +2973,7 @@
 7443#George Wilson#S#Buffalo Bills#
 6895#Gibril Wilson#S#Oakland Raiders#
 8309#Josh Wilson#CB#Seattle Seahawks#
-8620#Julius Wilson#T#Miami Dolphins#
+8620#Julius Wilson#T#St. Louis Rams#
 6821#Kris Wilson#TE#Philadelphia Eagles#
 6910#Mark Wilson#T#Oakland Raiders#
 6978#Quincy Wilson#RB#Cincinnati Bengals#
@@ -2987,7 +2988,7 @@
 8670#Ulrich Winkler#DT#Tennessee Titans#
 6765#Kellen Winslow#TE#Cleveland Browns#
 7815#Eric Winston#T#Houston Texans#
-5983#Coy Wire#S#Buffalo Bills#
+5983#Coy Wire#S#Atlanta Falcons#
 7547#Jerron Wishom#CB#Dallas Cowboys#
 5959#Will Witherspoon#LB#St. Louis Rams#
 4984#Cory Withrow#C#San Diego Chargers#
