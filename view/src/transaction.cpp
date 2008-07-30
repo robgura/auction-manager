@@ -8,6 +8,21 @@
 #include <QString>
 
 
+void Transaction::sell(sqlite3* db, const int ownerKey, const int playerKey, const int price)
+{
+    std::string str_ownerKey = QString::number(ownerKey).toStdString();
+    std::string str_playerKey = QString::number(playerKey).toStdString();
+    std::string str_price = QString::number(price).toStdString();
+    std::string str_trans = QString::number(Sell).toStdString();
+
+    const std::string insert = "insert into OwnerPlayers values ( " + str_ownerKey + ", " + str_playerKey + ", " + str_trans + ", " + str_price + " );";
+    if(sqlite3_exec(db, insert.c_str(), 0, 0, 0) != SQLITE_OK)
+    {
+        qDebug() << sqlite3_errmsg(db);
+    }
+
+}
+
 void Transaction::buy(sqlite3* db, const int ownerKey, const int playerKey, const int price)
 {
     std::string str_ownerKey = QString::number(ownerKey).toStdString();

@@ -9,6 +9,8 @@ struct sqlite3;
 class Transaction
 {
     public:
+        static void sell(sqlite3* db, const int ownerKey, const int playerKey, const int price);
+
         static void buy(sqlite3* db, const int ownerKey, const int playerKey, const int price);
 
         static int moneySpent(sqlite3* db, const int ownerKey);
