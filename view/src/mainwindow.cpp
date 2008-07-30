@@ -3,6 +3,7 @@
 #include "view/createteamdialog.h"
 #include "view/mainwindow.h"
 #include "view/ownermodel.h"
+#include "view/parsesql.h"
 #include "view/playermodel.h"
 #include "view/ui_mainform.h"
 #include <QDebug>
@@ -137,6 +138,23 @@ void MainWindow::playerInputLineEditChange(const QString& newFilter)
 
 void MainWindow::initDatabase(sqlite3* db)
 {
+    initFootballPlayers(db);
+
+    const std::string createOwners= "create table Owners (Key INTEGER PRIMARY KEY, Name TEXT NOT NULL, Team_Name TEXT NOT NULL);";
+    if(sqlite3_exec(db, createOwners.c_str(), 0, 0, 0) != SQLITE_OK)
+    {
+        qDebug() << sqlite3_errmsg(db);
+    }
+
+    const std::string createOwnerPlayer= "create table OwnerPlayers (OwnerKey INTEGER NOT NULL, Playerkey INTEGER NOT NULL, TransType INTEGER NON NULL, Price INTEGER NOT NULL);";
+    if(sqlite3_exec(db, createOwnerPlayer.c_str(), 0, 0, 0) != SQLITE_OK)
+    {
+        qDebug() << sqlite3_errmsg(db);
+    }
+}
+
+void MainWindow::initFootballPlayers(sqlite3* db)
+{
     const std::string createTable = "create table NFLPlayers (Key INTEGER PRIMARY KEY, Name TEXT NOT NULL, Pos TEXT NOT NULL, Team TEXT);";
 
     if(sqlite3_exec(db, createTable.c_str(), 0, 0, 0) != SQLITE_OK)
@@ -190,16 +208,24 @@ void MainWindow::initDatabase(sqlite3* db)
 
     delete tempFile;
 
-    const std::string createOwners= "create table Owners (Key INTEGER PRIMARY KEY, Name TEXT NOT NULL, Team_Name TEXT NOT NULL);";
-    if(sqlite3_exec(db, createOwners.c_str(), 0, 0, 0) != SQLITE_OK)
-    {
-        qDebug() << sqlite3_errmsg(db);
-    }
+    Rows rows = ParseSQL::exec(db, "select DISTINCT Team from NFLPlayers");
 
-    const std::string createOwnerPlayer= "create table OwnerPlayers (OwnerKey INTEGER NOT NULL, Playerkey INTEGER NOT NULL, TransType INTEGER NON NULL, Price INTEGER NOT NULL);";
-    if(sqlite3_exec(db, createOwnerPlayer.c_str(), 0, 0, 0) != SQLITE_OK)
+    int key = -1;
+    for(Rows::const_iterator iter = rows.begin(); iter != rows.end(); ++iter, --key)
     {
-        qDebug() << sqlite3_errmsg(db);
+        std::string key_str = QString::number(key).toStdString();
+
+        std::string insert("insert into NFLPlayers values (");
+        insert += "\"" + key_str + "\",";
+        insert += "\"" + iter->at(0) + "\",";
+        insert += "\"Defensive Team\",";
+        insert += "\"" + iter->at(0) + "\"";
+        insert += ");";
+
+        if(sqlite3_exec(db, insert.c_str(), 0, 0, 0) != SQLITE_OK)
+        {
+            qDebug() << sqlite3_errmsg(db);
+        }
     }
 }
 

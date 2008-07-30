@@ -31,6 +31,7 @@ class MainWindow : public QMainWindow
         void ownerClicked(const QModelIndex&);
 
     private:
+        static void initFootballPlayers(sqlite3* db);
         static void initDatabase(sqlite3* db);
         void initPlayerModel();
         void initOwnerModel();
