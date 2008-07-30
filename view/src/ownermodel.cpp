@@ -65,6 +65,26 @@ int OwnerModel::columnCount(const QModelIndex& index) const
     return 0;
 }
 
+QVariant OwnerModel::headerData(int section, Qt::Orientation orientation, int role) const
+{
+    if(role == Qt::DisplayRole)
+    {
+        if(section == 0)
+        {
+            return QVariant(QString("Owner Name"));
+        }
+        else if(section == 1)
+        {
+            return QVariant(QString("Team Name"));
+        }
+        else if(section == 2)
+        {
+            return QVariant(QString("Max Bid"));
+        }
+    }
+    return QVariant();
+}
+
 QVariant OwnerModel::data(const QModelIndex& index, int role) const
 {
     if(index.isValid())

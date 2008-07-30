@@ -28,6 +28,8 @@ class OwnerModel : public QAbstractItemModel
         virtual bool dropMimeData(const QMimeData* data, Qt::DropAction action, int row, int column, const QModelIndex & parent);
         virtual QStringList mimeTypes() const;
 
+        virtual QVariant headerData(int section, Qt::Orientation orientation, int role) const;
+
         void addOwner(const std::string& owner, const std::string& teamName);
 
     private:
