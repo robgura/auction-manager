@@ -60,7 +60,7 @@ int OwnerModel::columnCount(const QModelIndex& index) const
 {
     if(! index.isValid())
     {
-        return 2;
+        return 3;
     }
     return 0;
 }
@@ -78,6 +78,10 @@ QVariant OwnerModel::data(const QModelIndex& index, int role) const
             else if(index.column() == 1)
             {
                 return QVariant(QString(_ownerCache.at(index.row())._teamName.c_str()));
+            }
+            else if(index.column() == 2)
+            {
+                return QVariant(Transaction::availableMoneyLeft(_db, _ownerCache.at(index.row())._key));
             }
         }
         else if(role == KeyRole)
