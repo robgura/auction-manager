@@ -13,6 +13,7 @@ class OwnerInfo : public QWidget
 
     private:
         void setupTransactions(int ownerKey);
+        void setupMoney(int ownerKey);
 
     private:
         Ui::Form _form;

@@ -1,6 +1,7 @@
 
 #include "view/ownerinfo.h"
 #include "view/parsesql.h"
+#include "view/transaction.h"
 #include <QTreeWidgetItem>
 #include <QString>
 
@@ -10,7 +11,14 @@ OwnerInfo::OwnerInfo(QWidget* parent, sqlite3* db, int ownerKey)
 {
     _form.setupUi(this);
 
+    setupMoney(ownerKey);
     setupTransactions(ownerKey);
+}
+
+void OwnerInfo::setupMoney(int ownerKey)
+{
+    _form.totalCash->setText("$" + QString::number(Transaction::moneyLeft(_db, ownerKey)));
+    _form.maxBid->setText("$" + QString::number(Transaction::availableMoneyLeft(_db, ownerKey)));
 }
 
 void OwnerInfo::setupTransactions(int ownerKey)

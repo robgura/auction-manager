@@ -4,20 +4,19 @@
 
 #include <string>
 
+struct sqlite3;
+
 class Transaction
 {
     public:
-        Transaction( Owner
-             , const std::string& name
-             , const std::string& teamName
-             )
-            : _key(key)
-            , _name(name)
-            , _teamName(teamName)
-        {
-        }
+        static void buy(sqlite3* db, const int ownerKey, const int playerKey, const int price);
 
-        int _key;
-        std::string _name;
-        std::string _teamName;
+        static int moneySpent(sqlite3* db, const int ownerKey);
+
+        static int moneyLeft(sqlite3* db, const int ownerKey);
+
+        static int rosterSize(sqlite3* db, const int ownerKey);
+
+        static int availableMoneyLeft(sqlite3* db, const int ownerKey);
+
 };

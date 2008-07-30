@@ -2,11 +2,12 @@
 #include "sqlite/sqlite3.h"
 #include "view/confirmdialog.h"
 #include "view/ownermodel.h"
+#include "view/parsesql.h"
+#include "view/transaction.h"
 #include "view/transtypes.h"
 #include <QDebug>
 #include <QMimeData>
 #include <QStringList>
-#include "view/parsesql.h"
 
 
 OwnerModel::OwnerModel(sqlite3* db)
@@ -90,16 +91,7 @@ QVariant OwnerModel::data(const QModelIndex& index, int role) const
 
 void OwnerModel::purchase(const int ownerKey, const int playerKey, const int price)
 {
-    std::string str_ownerKey = QString::number(ownerKey).toStdString();
-    std::string str_playerKey = QString::number(playerKey).toStdString();
-    std::string str_price = QString::number(price).toStdString();
-    std::string str_trans = QString::number(Buy).toStdString();
-
-    const std::string insert = "insert into OwnerPlayers values ( " + str_ownerKey + ", " + str_playerKey + ", " + str_trans + ", " + str_price + " );";
-    if(sqlite3_exec(_db, insert.c_str(), 0, 0, 0) != SQLITE_OK)
-    {
-        qDebug() << sqlite3_errmsg(_db);
-    }
+    Transaction::buy(_db, ownerKey, playerKey, price);
 }
 
 bool OwnerModel::dropMimeData(const QMimeData* mimeData, Qt::DropAction action, int row, int column, const QModelIndex & parent)
