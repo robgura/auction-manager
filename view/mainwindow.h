@@ -29,6 +29,7 @@ class MainWindow : public QMainWindow
         void playerInputLineEditChange(const QString&);
         void createTeamEditor(bool);
         void ownerClicked(const QModelIndex&);
+        void tradePlayer(bool);
 
     private:
         static void initFootballPlayers(sqlite3* db);

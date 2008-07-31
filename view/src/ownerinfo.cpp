@@ -2,6 +2,7 @@
 #include "view/ownerinfo.h"
 #include "view/parsesql.h"
 #include "view/transaction.h"
+#include "view/transtypes.h"
 #include <QTreeWidgetItem>
 #include <QString>
 
@@ -31,12 +32,29 @@ void OwnerInfo::setupTransactions(int ownerKey)
 
     for(Rows::const_iterator iter = rows.begin(); iter != rows.end(); ++iter)
     {
+        const std::string playerName(iter->at(0));
+        const std::string pos(iter->at(1));
+        const std::string price(iter->at(3));
+        TransTypes type((TransTypes) atoi(iter->at(2).c_str()));
+
         QTreeWidgetItem* item = new QTreeWidgetItem;
-        item->setText(0, iter->at(0).c_str());
-        item->setText(1, iter->at(1).c_str());
-        item->setText(2, iter->at(3).c_str());
+        item->setText(0, playerName.c_str());
+        item->setText(1, pos.c_str());
+
+        if(type == Buy)
+        {
+            item->setText(2, price.c_str());
+        }
+        else if(type == Sell)
+        {
+            item->setText(2, ("(" + price + ")").c_str());
+        }
 
         _form.treeWidget->addTopLevelItem(item);
     }
+
+    _form.treeWidget->resizeColumnToContents(0);
+    _form.treeWidget->resizeColumnToContents(1);
+    _form.treeWidget->resizeColumnToContents(2);
 
 }

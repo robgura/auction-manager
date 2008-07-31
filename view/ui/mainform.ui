@@ -88,86 +88,6 @@
       </layout>
      </widget>
     </item>
-    <item>
-     <layout class="QVBoxLayout" >
-      <item>
-       <widget class="QGroupBox" name="groupBox_3" >
-        <property name="title" >
-         <string>Trades</string>
-        </property>
-        <layout class="QVBoxLayout" >
-         <item>
-          <widget class="QLabel" name="label_4" >
-           <property name="text" >
-            <string>Selling Owner</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QComboBox" name="sellingOwnerComboBox" />
-         </item>
-         <item>
-          <widget class="QLabel" name="label_5" >
-           <property name="text" >
-            <string>Is Selling Player</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QComboBox" name="sellingPlayerComboBox" />
-         </item>
-         <item>
-          <widget class="QLabel" name="label_6" >
-           <property name="text" >
-            <string>For This Much</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSpinBox" name="sellingPriceSpinBox" >
-           <property name="prefix" >
-            <string>$ </string>
-           </property>
-           <property name="maximum" >
-            <number>2000</number>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_7" >
-           <property name="text" >
-            <string>To Owner (Buyer)</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QComboBox" name="buyingOwnerComboBox" />
-         </item>
-         <item>
-          <widget class="QPushButton" name="confirmTradeButton" >
-           <property name="text" >
-            <string>Confirm Trade</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item>
-       <spacer>
-        <property name="orientation" >
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeHint" >
-         <size>
-          <width>20</width>
-          <height>40</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-     </layout>
-    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar" >
@@ -196,8 +116,15 @@
     <addaction name="actionOwner" />
     <addaction name="actionNFL_Player" />
    </widget>
+   <widget class="QMenu" name="menuTools" >
+    <property name="title" >
+     <string>Tools</string>
+    </property>
+    <addaction name="actionPlayer_Trade" />
+   </widget>
    <addaction name="menuFile" />
    <addaction name="menuInsert" />
+   <addaction name="menuTools" />
   </widget>
   <widget class="QStatusBar" name="statusbar" />
   <action name="actionNew" >
@@ -237,6 +164,11 @@
   <action name="actionNFL_Player" >
    <property name="text" >
     <string>NFL Player...</string>
+   </property>
+  </action>
+  <action name="actionPlayer_Trade" >
+   <property name="text" >
+    <string>Player Trade...</string>
    </property>
   </action>
  </widget>

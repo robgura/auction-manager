@@ -5,6 +5,7 @@
 #include "view/ownermodel.h"
 #include "view/parsesql.h"
 #include "view/playermodel.h"
+#include "view/tradeplayerdialog.h"
 #include "view/ui_mainform.h"
 #include <QDebug>
 #include <QFileDialog>
@@ -31,6 +32,9 @@ MainWindow::MainWindow()
     assert(v);
 
     v = connect(_window->actionOwner, SIGNAL(triggered(bool)), this, SLOT(createTeamEditor(bool)));
+    assert(v);
+
+    v = connect(_window->actionPlayer_Trade, SIGNAL(triggered(bool)), this, SLOT(tradePlayer(bool)));
     assert(v);
 
     v = connect(_window->playerInput, SIGNAL(textChanged(const QString&)), this, SLOT(playerInputLineEditChange(const QString&)));
@@ -117,6 +121,9 @@ void MainWindow::initPlayerModel()
     _playerProxyModel->setSourceModel(_playerModel);
 
     _window->playerView->setModel(_playerProxyModel);
+    _window->playerView->resizeColumnToContents(0);
+    _window->playerView->resizeColumnToContents(1);
+    _window->playerView->resizeColumnToContents(2);
 }
 
 void MainWindow::initOwnerModel()
@@ -129,6 +136,9 @@ void MainWindow::initOwnerModel()
     _ownerProxyModel->setSourceModel(_ownerModel);
 
     _window->ownerView->setModel(_ownerProxyModel);
+    _window->ownerView->resizeColumnToContents(0);
+    _window->ownerView->resizeColumnToContents(1);
+    _window->ownerView->resizeColumnToContents(2);
 }
 
 void MainWindow::playerInputLineEditChange(const QString& newFilter)
@@ -242,3 +252,8 @@ void MainWindow::ownerClicked(const QModelIndex& ownerIndex)
     _window->ownerInfo->layout()->addWidget(_ownerInfo);
 }
 
+void MainWindow::tradePlayer(bool)
+{
+    TradePlayerDialog dialog(this, _db);
+    dialog.exec();
+}
