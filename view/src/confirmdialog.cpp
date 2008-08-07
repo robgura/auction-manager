@@ -1,8 +1,10 @@
 
-#include "view/confirmdialog.h"
 #include "sqlite/sqlite3.h"
-#include <QDebug>
-
+#include "view/confirmdialog.h"
+#include "view/parsesql.h"
+#include "view/transaction.h"
+#include <QPushButton>
+#include <assert.h>
 
 ConfirmPurchase::ConfirmPurchase(QWidget* parent, sqlite3* db, int ownerKey, int playerKey)
     : QDialog(parent)
@@ -15,71 +17,78 @@ ConfirmPurchase::ConfirmPurchase(QWidget* parent, sqlite3* db, int ownerKey, int
 
     loadNflData();
     loadOwnerData();
+
+    _maxBid = Transaction::availableMoneyLeft(_db, ownerKey);
+    verifyPrice(_form.spinBox->value());
+
+    verifyPlayerNotOwned();
+
+    bool v = connect(_form.spinBox, SIGNAL(valueChanged(int)), this, SLOT(verifyPrice(int)));
+    assert(v);
 }
 
-class NFL
+void ConfirmPurchase::verifyPrice(int i)
 {
-    public:
-        static std::string name;
-        static std::string pos;
-        static std::string team;
+    if(i > _maxBid)
+    {
+        _form.status->setText("Rejected");
+        QString pre = "Owners bid cannot exceed ";
+        _form.reason->setText(pre + QString::number(_maxBid));
+        _form.buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
+    }
+    else
+    {
+        _form.status->setText("Accepted");
+        _form.reason->clear();
+        _form.buttonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
+    }
+}
 
-        static int handle(void*, int columns, char** columnData, char** columnNames)
+void ConfirmPurchase::verifyPlayerNotOwned()
+{
+    std::string key = QString::number(_playerKey).toStdString();
+    const std::string sql = "select Owners.Name, OwnerPlayers.TransType FROM OwnerPlayers, Owners where PlayerKey = " + key + " AND Owners.Key=OwnerPlayers.OwnerKey;";
+    Rows rows = ParseSQL::exec(_db, sql);
+
+    // the player is already owned, iterator backward through transactions to find the last buy of this player
+    // that is who currently owns him
+    for(Rows::const_reverse_iterator iter = rows.rbegin(); iter != rows.rend(); ++iter)
+    {
+        if(iter->at(1) == "0")
         {
-            name = columnData[0];
-            pos = columnData[1];
-            team = columnData[2];
-            return 0;
+            _form.status->setText("Rejected");
+            QString pre = "Player is already owned by: ";
+            _form.reason->setText(pre + iter->at(0).c_str());
+            _form.spinBox->setEnabled(false);
+            _form.buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
+            return;
         }
-};
+    }
 
-std::string NFL::name;
-std::string NFL::team;
-std::string NFL::pos;
+}
 
 void ConfirmPurchase::loadNflData()
 {
     std::string key = QString::number(_playerKey).toStdString();
     const std::string sql = "select Name, Pos, Team from NFLPlayers where Key = " + key + ";";
-    if(sqlite3_exec(_db, sql.c_str(), NFL::handle, 0, 0) != SQLITE_OK)
-    {
-        qDebug() << sqlite3_errmsg(_db);
-    }
 
-    _form.playerName->setText(NFL::name.c_str());
-    _form.playerTeam->setText(NFL::team.c_str());
-    _form.pos->setText(NFL::pos.c_str());
+    Rows rows = ParseSQL::exec(_db, sql);
+
+    _form.playerName->setText(rows.at(0).at(0).c_str());
+    _form.playerTeam->setText(rows.at(0).at(1).c_str());
+    _form.pos->setText(rows.at(0).at(2).c_str());
 
 }
-
-class OwnerStatic
-{
-    public:
-        static std::string name;
-        static std::string team;
-
-        static int handle(void*, int columns, char** columnData, char** columnNames)
-        {
-            name = columnData[0];
-            team = columnData[1];
-            return 0;
-        }
-};
-
-std::string OwnerStatic::name;
-std::string OwnerStatic::team;
 
 void ConfirmPurchase::loadOwnerData()
 {
     std::string key = QString::number(_ownerKey).toStdString();
     const std::string sql = "select Name, Team_Name from Owners where Key = " + key + ";";
-    if(sqlite3_exec(_db, sql.c_str(), OwnerStatic::handle, 0, 0) != SQLITE_OK)
-    {
-        qDebug() << sqlite3_errmsg(_db);
-    }
 
-    _form.ownerName->setText(OwnerStatic::name.c_str());
-    _form.ownerTeam->setText(OwnerStatic::team.c_str());
+    Rows rows = ParseSQL::exec(_db, sql);
+
+    _form.ownerName->setText(rows.at(0).at(0).c_str());
+    _form.ownerName->setText(rows.at(0).at(1).c_str());
 }
 
 void ConfirmPurchase::accept()

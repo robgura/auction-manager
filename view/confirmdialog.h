@@ -20,8 +20,10 @@ class ConfirmPurchase : public QDialog
 
     private:
         void load();
+        void verifyPlayerNotOwned();
 
     private slots:
+        void verifyPrice(int);
 
     private:
         void loadNflData();
@@ -37,6 +39,8 @@ class ConfirmPurchase : public QDialog
         const int _playerKey;
 
         int _price;
+
+        int _maxBid;
 };
 
 inline int ConfirmPurchase::getPrice() const
