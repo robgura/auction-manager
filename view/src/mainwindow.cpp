@@ -6,6 +6,7 @@
 #include "view/parsesql.h"
 #include "view/playermodel.h"
 #include "view/tradeplayerdialog.h"
+#include "view/ui_defaultownerInfo.h"
 #include "view/ui_mainform.h"
 #include <QDebug>
 #include <QFileDialog>
@@ -17,6 +18,7 @@
 MainWindow::MainWindow()
     : _window(new Ui::MainWindow())
     , _ownerInfo(0)
+    , _defaultOwnerInfo(0)
     , _playerModel(0)
     , _ownerModel(0)
     , _playerProxyModel(0)
@@ -66,6 +68,16 @@ void MainWindow::setValidDb(bool valid)
         _window->actionOwner->setEnabled(false);
         _window->actionNFL_Player->setEnabled(false);
         _window->actionPlayer_Trade->setEnabled(false);
+
+        delete _ownerInfo;
+        _ownerInfo = 0;
+
+        delete _defaultOwnerInfo;
+        _defaultOwnerInfo = new QWidget(_window->ownerInfo);
+        Ui::defaultOwnerInfo def;
+        def.setupUi(_defaultOwnerInfo);
+        _window->ownerInfo->layout()->addWidget(_defaultOwnerInfo);
+        _defaultOwnerInfo->setEnabled(false);
     }
 }
 
@@ -91,6 +103,7 @@ void MainWindow::openProject(bool)
 
         initOwnerModel();
 
+        setValidDb(false);
         setValidDb(true);
     }
 }
@@ -270,6 +283,9 @@ void MainWindow::createTeamEditor(bool)
 
 void MainWindow::ownerClicked(const QModelIndex& ownerIndex)
 {
+    delete _defaultOwnerInfo;
+    _defaultOwnerInfo = 0;
+
     delete _ownerInfo;
     _ownerInfo = new OwnerInfo(_window->ownerInfo, _db, ownerIndex.data(OwnerModel::KeyRole).toInt());
     _window->ownerInfo->layout()->addWidget(_ownerInfo);

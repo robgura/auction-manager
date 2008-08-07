@@ -41,6 +41,7 @@ class MainWindow : public QMainWindow
     private:
         Ui::MainWindow* _window;
         OwnerInfo* _ownerInfo;
+        QWidget* _defaultOwnerInfo;
 
         PlayerModel* _playerModel;
         OwnerModel* _ownerModel;

@@ -14,6 +14,26 @@ OwnerInfo::OwnerInfo(QWidget* parent, sqlite3* db, int ownerKey)
 
     setupMoney(ownerKey);
     setupTransactions(ownerKey);
+
+    setupOwnerName(ownerKey);
+}
+
+void OwnerInfo::setupOwnerName(int ownerKey)
+{
+    std::string sql = "select Name FROM Owners WHERE Key=";
+    std::string key_str = QString::number(ownerKey).toStdString();
+    sql += key_str + ";";
+
+    Rows rows = ParseSQL::exec(_db, sql);
+
+    if(rows.empty())
+    {
+        _form.ownerName->setText("Can't Find Owner Name");
+    }
+    else
+    {
+        _form.ownerName->setText(rows.at(0).at(0).c_str());
+    }
 }
 
 void OwnerInfo::setupMoney(int ownerKey)
