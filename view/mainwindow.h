@@ -29,7 +29,9 @@ class MainWindow : public QMainWindow
         void playerInputLineEditChange(const QString&);
         void createTeamEditor(bool);
         void ownerClicked(const QModelIndex&);
-        void tradePlayer(bool);
+        void launchTradePlayerDialog(bool);
+
+        void trans();
 
     private:
         static void initFootballPlayers(sqlite3* db);
@@ -37,6 +39,8 @@ class MainWindow : public QMainWindow
         void initPlayerModel();
         void initOwnerModel();
         void setValidDb(bool);
+
+        void showDefaultOwnerInfo();
 
     private:
         Ui::MainWindow* _window;

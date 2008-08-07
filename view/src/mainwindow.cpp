@@ -5,6 +5,7 @@
 #include "view/ownermodel.h"
 #include "view/parsesql.h"
 #include "view/playermodel.h"
+#include "view/shouter.h"
 #include "view/tradeplayerdialog.h"
 #include "view/ui_defaultownerInfo.h"
 #include "view/ui_mainform.h"
@@ -36,13 +37,16 @@ MainWindow::MainWindow()
     v = connect(_window->actionOwner, SIGNAL(triggered(bool)), this, SLOT(createTeamEditor(bool)));
     assert(v);
 
-    v = connect(_window->actionPlayer_Trade, SIGNAL(triggered(bool)), this, SLOT(tradePlayer(bool)));
+    v = connect(_window->actionPlayer_Trade, SIGNAL(triggered(bool)), this, SLOT(launchTradePlayerDialog(bool)));
     assert(v);
 
     v = connect(_window->playerInput, SIGNAL(textChanged(const QString&)), this, SLOT(playerInputLineEditChange(const QString&)));
     assert(v);
 
     v = connect(_window->ownerView, SIGNAL(clicked(const QModelIndex&)), this, SLOT(ownerClicked(const QModelIndex&)));
+    assert(v);
+
+    v = connect(Shouter::instance(), SIGNAL(transaction()), this, SLOT(trans()));
     assert(v);
 
     setValidDb(false);
@@ -68,7 +72,13 @@ void MainWindow::setValidDb(bool valid)
         _window->actionOwner->setEnabled(false);
         _window->actionNFL_Player->setEnabled(false);
         _window->actionPlayer_Trade->setEnabled(false);
+        showDefaultOwnerInfo();
+    }
+}
 
+
+void MainWindow::showDefaultOwnerInfo()
+{
         delete _ownerInfo;
         _ownerInfo = 0;
 
@@ -78,7 +88,6 @@ void MainWindow::setValidDb(bool valid)
         def.setupUi(_defaultOwnerInfo);
         _window->ownerInfo->layout()->addWidget(_defaultOwnerInfo);
         _defaultOwnerInfo->setEnabled(false);
-    }
 }
 
 void MainWindow::openProject(bool)
@@ -291,8 +300,22 @@ void MainWindow::ownerClicked(const QModelIndex& ownerIndex)
     _window->ownerInfo->layout()->addWidget(_ownerInfo);
 }
 
-void MainWindow::tradePlayer(bool)
+void MainWindow::launchTradePlayerDialog(bool)
 {
     TradePlayerDialog dialog(this, _db);
     dialog.exec();
+}
+
+void MainWindow::trans()
+{
+    QModelIndexList indexes = _window->ownerView->selectionModel()->selectedIndexes();
+
+    if(indexes.isEmpty())
+    {
+        showDefaultOwnerInfo();
+    }
+    else
+    {
+        ownerClicked(indexes.at(0));
+    }
 }

@@ -28,8 +28,8 @@
          <property name="dragDropMode" >
           <enum>QAbstractItemView::DropOnly</enum>
          </property>
-         <property name="selectionMode" >
-          <enum>QAbstractItemView::NoSelection</enum>
+         <property name="alternatingRowColors" >
+          <bool>true</bool>
          </property>
         </widget>
        </item>

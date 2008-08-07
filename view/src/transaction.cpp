@@ -4,6 +4,7 @@
 #include "view/transtypes.h"
 #include "view/parsesql.h"
 #include "view/settings.h"
+#include "view/shouter.h"
 #include <QDebug>
 #include <QString>
 
@@ -21,6 +22,7 @@ void Transaction::sell(sqlite3* db, const int ownerKey, const int playerKey, con
         qDebug() << sqlite3_errmsg(db);
     }
 
+    Shouter::instance()->trans();
 }
 
 void Transaction::buy(sqlite3* db, const int ownerKey, const int playerKey, const int price)
@@ -36,6 +38,7 @@ void Transaction::buy(sqlite3* db, const int ownerKey, const int playerKey, cons
         qDebug() << sqlite3_errmsg(db);
     }
 
+    Shouter::instance()->trans();
 }
 
 int Transaction::moneySpent(sqlite3* db, const int ownerKey)
