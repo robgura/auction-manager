@@ -134,9 +134,6 @@
      <property name="buttonSymbols" >
       <enum>QAbstractSpinBox::PlusMinus</enum>
      </property>
-     <property name="prefix" >
-      <string>$</string>
-     </property>
      <property name="minimum" >
       <number>1</number>
      </property>

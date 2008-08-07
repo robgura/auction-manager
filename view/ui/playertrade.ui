@@ -103,9 +103,6 @@
      <property name="buttonSymbols" >
       <enum>QAbstractSpinBox::PlusMinus</enum>
      </property>
-     <property name="prefix" >
-      <string>$</string>
-     </property>
     </widget>
    </item>
    <item>

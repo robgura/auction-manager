@@ -36,6 +36,7 @@ class MainWindow : public QMainWindow
         static void initDatabase(sqlite3* db);
         void initPlayerModel();
         void initOwnerModel();
+        void setValidDb(bool);
 
     private:
         Ui::MainWindow* _window;

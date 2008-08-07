@@ -43,11 +43,30 @@ MainWindow::MainWindow()
     v = connect(_window->ownerView, SIGNAL(clicked(const QModelIndex&)), this, SLOT(ownerClicked(const QModelIndex&)));
     assert(v);
 
+    setValidDb(false);
 }
 
 MainWindow::~MainWindow()
 {
     sqlite3_close(_db);
+}
+
+void MainWindow::setValidDb(bool valid)
+{
+    if(valid)
+    {
+        _window->actionSave_As->setEnabled(true);
+        _window->actionOwner->setEnabled(true);
+        _window->actionNFL_Player->setEnabled(true);
+        _window->actionPlayer_Trade->setEnabled(true);
+    }
+    else
+    {
+        _window->actionSave_As->setEnabled(false);
+        _window->actionOwner->setEnabled(false);
+        _window->actionNFL_Player->setEnabled(false);
+        _window->actionPlayer_Trade->setEnabled(false);
+    }
 }
 
 void MainWindow::openProject(bool)
@@ -71,6 +90,8 @@ void MainWindow::openProject(bool)
         initPlayerModel();
 
         initOwnerModel();
+
+        setValidDb(true);
     }
 }
 
@@ -108,6 +129,8 @@ void MainWindow::newProject(bool)
 
             initOwnerModel();
         }
+
+        setValidDb(true);
     }
 }
 

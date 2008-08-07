@@ -48,6 +48,9 @@ void OwnerInfo::setupTransactions(int ownerKey)
         else if(type == Sell)
         {
             item->setText(2, ("(" + price + ")").c_str());
+            item->setData(2, Qt::ForegroundRole, QVariant(QColor(Qt::red)));
+            item->setData(1, Qt::ForegroundRole, QVariant(QColor(Qt::gray)));
+            item->setData(0, Qt::ForegroundRole, QVariant(QColor(Qt::gray)));
         }
 
         _form.treeWidget->addTopLevelItem(item);
