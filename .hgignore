@@ -2,6 +2,7 @@ syntax:glob
 CMakeCache.txt
 *CMakeFiles*
 *.cmake
+*.swp
 Makefile
 ui_*.h
 moc_*

@@ -1,0 +1,115 @@
+<ui version="4.0" >
+ <class>defaultOwnerInfo</class>
+ <widget class="QWidget" name="defaultOwnerInfo" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>364</width>
+    <height>413</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" >
+   <item>
+    <widget class="QLabel" name="ownerName" >
+     <property name="font" >
+      <font>
+       <family>Serif</family>
+       <pointsize>14</pointsize>
+       <italic>true</italic>
+      </font>
+     </property>
+     <property name="text" >
+      <string>Owner Info</string>
+     </property>
+     <property name="alignment" >
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" >
+     <item>
+      <widget class="QGroupBox" name="groupBox" >
+       <property name="title" >
+        <string>Total Cash</string>
+       </property>
+       <layout class="QVBoxLayout" >
+        <item>
+         <widget class="QLabel" name="totalCash" >
+          <property name="font" >
+           <font>
+            <family>Serif</family>
+            <pointsize>16</pointsize>
+            <italic>true</italic>
+           </font>
+          </property>
+          <property name="text" >
+           <string>$0</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="groupBox_2" >
+       <property name="title" >
+        <string>Max Bid</string>
+       </property>
+       <layout class="QVBoxLayout" >
+        <item>
+         <widget class="QLabel" name="maxBid" >
+          <property name="font" >
+           <font>
+            <family>Serif</family>
+            <pointsize>16</pointsize>
+            <italic>true</italic>
+           </font>
+          </property>
+          <property name="text" >
+           <string>$0</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QTreeWidget" name="treeWidget" >
+     <property name="columnCount" >
+      <number>3</number>
+     </property>
+     <column>
+      <property name="text" >
+       <string>Player</string>
+      </property>
+     </column>
+     <column>
+      <property name="text" >
+       <string>Position</string>
+      </property>
+     </column>
+     <column>
+      <property name="text" >
+       <string>Price</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
