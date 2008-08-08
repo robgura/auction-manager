@@ -7,6 +7,7 @@
 #include "view/playermodel.h"
 #include "view/shouter.h"
 #include "view/tradeplayerdialog.h"
+#include "view/transaction.h"
 #include "view/ui_defaultownerInfo.h"
 #include "view/ui_mainform.h"
 #include <QDebug>
@@ -40,6 +41,9 @@ MainWindow::MainWindow()
     v = connect(_window->actionPlayer_Trade, SIGNAL(triggered(bool)), this, SLOT(launchTradePlayerDialog(bool)));
     assert(v);
 
+    v = connect(_window->actionExport_CSV, SIGNAL(triggered(bool)), this, SLOT(exportCSV(bool)));
+    assert(v);
+
     v = connect(_window->playerInput, SIGNAL(textChanged(const QString&)), this, SLOT(playerInputLineEditChange(const QString&)));
     assert(v);
 
@@ -65,6 +69,7 @@ void MainWindow::setValidDb(bool valid)
         _window->actionOwner->setEnabled(true);
         _window->actionNFL_Player->setEnabled(true);
         _window->actionPlayer_Trade->setEnabled(true);
+        _window->actionExport_CSV->setEnabled(true);
     }
     else
     {
@@ -72,6 +77,7 @@ void MainWindow::setValidDb(bool valid)
         _window->actionOwner->setEnabled(false);
         _window->actionNFL_Player->setEnabled(false);
         _window->actionPlayer_Trade->setEnabled(false);
+        _window->actionExport_CSV->setEnabled(false);
         showDefaultOwnerInfo();
     }
 }
@@ -117,6 +123,38 @@ void MainWindow::openProject(bool)
     }
 }
 
+void MainWindow::exportCSV(bool)
+{
+    QFileDialog dialog(this, "Choose File To Export");
+    dialog.setFileMode(QFileDialog::AnyFile);
+    dialog.setAcceptMode(QFileDialog::AcceptSave);
+    dialog.setFilter("*.csv");
+    dialog.setDefaultSuffix("csv");
+
+    if(dialog.exec())
+    {
+        QString fileName = dialog.selectedFiles().at(0);
+
+        if(_db != 0)
+        {
+            sqlite3_close(_db);
+        }
+
+        bool weAreCool = true;
+        QFile file(fileName);
+        if(file.exists())
+        {
+            weAreCool = file.remove();
+        }
+
+        if(weAreCool)
+        {
+//            std::ofstream outFile(fileName.toStdString().c_str());
+//            std::string sql = "select NFLPlayers.Name, NFLPlayers.Pos, NFLPlayers.Team, OwnerPlayers.TransType, OwnerPlayers.Price FROM NFLPlayers, OwnerPlayers WHERE OwnerPlayers.PlayerKey=NFLPlayers.Key AND OwnerPlayers.OwnerKey=";
+        }
+    }
+}
+
 void MainWindow::newProject(bool)
 {
     QFileDialog dialog(this, "Choose File To Create");
@@ -153,6 +191,47 @@ void MainWindow::newProject(bool)
         }
 
         setValidDb(true);
+
+        //createTestData();
+    }
+}
+
+void MainWindow::createTestData()
+{
+    _ownerModel->addOwner("Drew", "Dreams");
+    _ownerModel->addOwner("Jasmine", "Jugglers");
+    _ownerModel->addOwner("Jennifer", "Jelly");
+    _ownerModel->addOwner("Jimmie", "Juice");
+    _ownerModel->addOwner("Joslynn", "Joint");
+    _ownerModel->addOwner("Michelle", "Moth Balls");
+    _ownerModel->addOwner("Rob", "Rockets");
+    _ownerModel->addOwner("Zac", "Zig");
+
+    Rows rows = ParseSQL::exec(_db, "select Key from NFLPlayers");
+
+    const unsigned int teams = 8;
+    const unsigned int playersPerTeam = 14;
+    const unsigned int totalPlayers = teams * playersPerTeam;
+
+    const unsigned int nflSize = rows.size();
+    const unsigned int spacing = nflSize / totalPlayers;
+
+    int counter = 0;
+    int ownerIndex = 0;
+    for(Rows::const_iterator iter = rows.begin(); iter != rows.end(); ++iter, ++counter)
+    {
+
+        if((counter % spacing) == 0)
+        {
+            ownerIndex = ownerIndex % teams;
+            const int ownerKey = ownerIndex + 1;
+
+            int nflKey = atoi(iter->at(0).c_str());
+            int price = rand() % 12 + 1;
+            Transaction::buy(_db, ownerKey, nflKey, price);
+
+            ++ownerIndex;
+        }
     }
 }
 

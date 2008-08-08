@@ -44,22 +44,25 @@ void OwnerInfo::setupMoney(int ownerKey)
 
 void OwnerInfo::setupTransactions(int ownerKey)
 {
-    std::string sql = "select NFLPlayers.Name, NFLPlayers.Pos, OwnerPlayers.TransType, OwnerPlayers.Price FROM NFLPlayers, OwnerPlayers WHERE OwnerPlayers.PlayerKey=NFLPlayers.Key AND OwnerPlayers.OwnerKey=";
+    std::string sql = "select NFLPlayers.Key, NFLPlayers.Name, NFLPlayers.Pos, OwnerPlayers.TransType, OwnerPlayers.Price FROM NFLPlayers, OwnerPlayers WHERE OwnerPlayers.PlayerKey=NFLPlayers.Key AND OwnerPlayers.OwnerKey=";
     std::string key_str = QString::number(ownerKey).toStdString();
     sql += key_str + ";";
 
     Rows rows = ParseSQL::exec(_db, sql);
 
+    std::vector<QTreeWidgetItem*> items;
     for(Rows::const_iterator iter = rows.begin(); iter != rows.end(); ++iter)
     {
-        const std::string playerName(iter->at(0));
-        const std::string pos(iter->at(1));
-        const std::string price(iter->at(3));
-        TransTypes type((TransTypes) atoi(iter->at(2).c_str()));
+        const int playerKey = atoi(iter->at(0).c_str());
+        const std::string playerName(iter->at(1));
+        const std::string pos(iter->at(2));
+        TransTypes type((TransTypes) atoi(iter->at(3).c_str()));
+        const std::string price(iter->at(4));
 
         QTreeWidgetItem* item = new QTreeWidgetItem;
         item->setText(0, playerName.c_str());
         item->setText(1, pos.c_str());
+        item->setData(0, Qt::UserRole, QVariant(playerKey));
 
         if(type == Buy)
         {
@@ -71,8 +74,19 @@ void OwnerInfo::setupTransactions(int ownerKey)
             item->setData(2, Qt::ForegroundRole, QVariant(QColor(Qt::red)));
             item->setData(1, Qt::ForegroundRole, QVariant(QColor(Qt::gray)));
             item->setData(0, Qt::ForegroundRole, QVariant(QColor(Qt::gray)));
+
+            std::vector<QTreeWidgetItem*>::const_reverse_iterator itemEndIter = items.rend();
+            for(std::vector<QTreeWidgetItem*>::reverse_iterator itemIter = items.rbegin(); itemIter != itemEndIter; ++itemIter)
+            {
+                if((*itemIter)->data(0, Qt::UserRole).toInt() == playerKey)
+                {
+                    (*itemIter)->setData(1, Qt::ForegroundRole, QVariant(QColor(Qt::gray)));
+                    (*itemIter)->setData(0, Qt::ForegroundRole, QVariant(QColor(Qt::gray)));
+                }
+            }
         }
 
+        items.push_back(item);
         _form.treeWidget->addTopLevelItem(item);
     }
 

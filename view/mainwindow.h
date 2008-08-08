@@ -26,6 +26,7 @@ class MainWindow : public QMainWindow
     private slots:
         void newProject(bool);
         void openProject(bool);
+        void exportCSV(bool);
         void playerInputLineEditChange(const QString&);
         void createTeamEditor(bool);
         void ownerClicked(const QModelIndex&);
@@ -39,8 +40,11 @@ class MainWindow : public QMainWindow
         void initPlayerModel();
         void initOwnerModel();
         void setValidDb(bool);
+        void creatTestData();
 
         void showDefaultOwnerInfo();
+
+        void createTestData();
 
     private:
         Ui::MainWindow* _window;
