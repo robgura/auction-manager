@@ -52,7 +52,8 @@ void ConfirmPurchase::verifyPlayerNotOwned()
 
     // the player is already owned, iterator backward through transactions to find the last buy of this player
     // that is who currently owns him
-    for(Rows::const_reverse_iterator iter = rows.rbegin(); iter != rows.rend(); ++iter)
+    Rows::const_reverse_iterator end = rows.rend();
+    for(Rows::const_reverse_iterator iter = rows.rbegin(); iter != end; ++iter)
     {
         if(iter->at(1) == "0")
         {
