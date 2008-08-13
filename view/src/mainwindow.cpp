@@ -8,6 +8,7 @@
 #include "view/shouter.h"
 #include "view/tradeplayerdialog.h"
 #include "view/transaction.h"
+#include "view/transtypes.h"
 #include "view/ui_defaultownerInfo.h"
 #include "view/ui_mainform.h"
 #include <QDebug>
@@ -15,6 +16,7 @@
 #include <QTemporaryFile>
 #include <assert.h>
 #include <fstream>
+#include <set>
 #include <sstream>
 
 MainWindow::MainWindow()
@@ -123,6 +125,46 @@ void MainWindow::openProject(bool)
     }
 }
 
+void outputOwner(sqlite3* db, std::ostream& os, int ownerKey)
+{
+    std::string sql = "select NFLPlayers.KEY, NFLPlayers.Name, NFLPlayers.Pos, NFLPlayers.Team, OwnerPlayers.TransType, OwnerPlayers.Price FROM NFLPlayers, OwnerPlayers WHERE OwnerPlayers.PlayerKey=NFLPlayers.Key AND OwnerPlayers.OwnerKey=";
+    sql += QString::number(ownerKey).toStdString() + ";";
+    Rows rows = ParseSQL::exec(db, sql);
+    cout << sql << endl << "Owner Rows " << rows << endl;
+    Rows::const_reverse_iterator end = rows.rend();
+    std::set<int> ignoreBuy;
+    for(Rows::const_reverse_iterator iter = rows.rbegin(); iter != end; ++iter)
+    {
+        const int playerKey = atoi(iter->at(0).c_str());
+        const std::string& playerName = iter->at(1);
+        const std::string& playerPos = iter->at(2);
+        const std::string& playerTeam = iter->at(3);
+        const TransTypes type = static_cast<TransTypes>(atoi(iter->at(4).c_str()));
+        const int price = atoi(iter->at(5).c_str());
+
+        if(type == Sell)
+        {
+            ignoreBuy.insert(playerKey);
+        }
+        else
+        {
+            // if this buy should be ignored because the player was sold
+            if(ignoreBuy.find(playerKey) != ignoreBuy.end())
+            {
+                ignoreBuy.erase(playerKey);
+            }
+            else
+            {
+                os << "\"" << playerName << "\"" << ","
+                   << "\"" << playerPos << "\"" << ","
+                   << "\"" << playerTeam << "\"" << ","
+                   << price
+                   << std::endl;
+            }
+        }
+    }
+}
+
 void MainWindow::exportCSV(bool)
 {
     QFileDialog dialog(this, "Choose File To Export");
@@ -135,11 +177,6 @@ void MainWindow::exportCSV(bool)
     {
         QString fileName = dialog.selectedFiles().at(0);
 
-        if(_db != 0)
-        {
-            sqlite3_close(_db);
-        }
-
         bool weAreCool = true;
         QFile file(fileName);
         if(file.exists())
@@ -149,8 +186,23 @@ void MainWindow::exportCSV(bool)
 
         if(weAreCool)
         {
-//            std::ofstream outFile(fileName.toStdString().c_str());
-//            std::string sql = "select NFLPlayers.Name, NFLPlayers.Pos, NFLPlayers.Team, OwnerPlayers.TransType, OwnerPlayers.Price FROM NFLPlayers, OwnerPlayers WHERE OwnerPlayers.PlayerKey=NFLPlayers.Key AND OwnerPlayers.OwnerKey=";
+            std::ofstream outFile(fileName.toStdString().c_str());
+
+            std::string sql = "select KEY, Name, Team_Name FROM Owners;";
+            Rows rows = ParseSQL::exec(_db, sql);
+            cout << rows << endl;
+            for(Rows::const_iterator iter = rows.begin(); iter != rows.end(); ++iter)
+            {
+                const int key = atoi(iter->at(0).c_str());
+                const std::string& name = iter->at(1);
+                const std::string& team = iter->at(2);
+                outFile << "\"" << name << "\"" << ","
+                        << "\"" << team << "\""
+                        << std::endl;
+
+                outputOwner(_db, outFile, key);
+                outFile << endl;
+            }
         }
     }
 }
@@ -207,7 +259,7 @@ void MainWindow::createTestData()
     _ownerModel->addOwner("Rob", "Rockets");
     _ownerModel->addOwner("Zac", "Zig");
 
-    Rows rows = ParseSQL::exec(_db, "select Key from NFLPlayers");
+    Rows rows = ParseSQL::exec(_db, "select Key from NFLPlayers;");
 
     const unsigned int teams = 8;
     const unsigned int playersPerTeam = 14;
