@@ -26,6 +26,8 @@ class PlayerModel : public QAbstractItemModel
 
         virtual QMimeData* mimeData(const QModelIndexList& indexes) const;
 
+        virtual QVariant headerData(int section, Qt::Orientation orientation, int role) const;
+
         typedef std::vector<Player> Players;
     private:
         Players _playerCache;

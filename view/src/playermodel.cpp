@@ -111,3 +111,23 @@ QMimeData* PlayerModel::mimeData(const QModelIndexList& indexes) const
     }
     return mime;
 }
+
+QVariant PlayerModel::headerData(int section, Qt::Orientation orientation, int role) const
+{
+    if(role == Qt::DisplayRole)
+    {
+        if(section == 0)
+        {
+            return QVariant(QString("Player Name"));
+        }
+        else if(section == 1)
+        {
+            return QVariant(QString("Position"));
+        }
+        else if(section == 2)
+        {
+            return QVariant(QString("Team"));
+        }
+    }
+    return QVariant();
+}

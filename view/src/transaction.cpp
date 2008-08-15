@@ -1,3 +1,7 @@
+#include <iostream>
+using std::cout;
+using std::cerr;
+using std::endl;
 
 #include "sqlite/sqlite3.h"
 #include "view/transaction.h"
@@ -16,7 +20,7 @@ void Transaction::sell(sqlite3* db, const int ownerKey, const int playerKey, con
     std::string str_price = QString::number(price).toStdString();
     std::string str_trans = QString::number(Sell).toStdString();
 
-    const std::string insert = "insert into OwnerPlayers values ( " + str_ownerKey + ", " + str_playerKey + ", " + str_trans + ", " + str_price + " );";
+    const std::string insert = "insert into OwnerPlayers values ( 0, " + str_ownerKey + ", " + str_playerKey + ", " + str_trans + ", " + str_price + " );";
     if(sqlite3_exec(db, insert.c_str(), 0, 0, 0) != SQLITE_OK)
     {
         qDebug() << sqlite3_errmsg(db);
@@ -32,11 +36,13 @@ void Transaction::buy(sqlite3* db, const int ownerKey, const int playerKey, cons
     std::string str_price = QString::number(price).toStdString();
     std::string str_trans = QString::number(Buy).toStdString();
 
-    const std::string insert = "insert into OwnerPlayers values ( " + str_ownerKey + ", " + str_playerKey + ", " + str_trans + ", " + str_price + " );";
+cout << "aAAA\n";
+    const std::string insert = "insert into OwnerPlayers values ( 0, " + str_ownerKey + ", " + str_playerKey + ", " + str_trans + ", " + str_price + " );";
     if(sqlite3_exec(db, insert.c_str(), 0, 0, 0) != SQLITE_OK)
     {
         qDebug() << sqlite3_errmsg(db);
     }
+cout << "bAAA\n";
 
     Shouter::instance()->trans();
 }
