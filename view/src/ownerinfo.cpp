@@ -3,8 +3,9 @@
 #include "view/parsesql.h"
 #include "view/transaction.h"
 #include "view/transtypes.h"
-#include <QTreeWidgetItem>
 #include <QString>
+#include <QTreeWidgetItem>
+#include <assert.h>
 
 OwnerInfo::OwnerInfo(QWidget* parent, sqlite3* db, int ownerKey)
     : QWidget(parent)
@@ -16,6 +17,10 @@ OwnerInfo::OwnerInfo(QWidget* parent, sqlite3* db, int ownerKey)
     setupTransactions(ownerKey);
 
     setupOwnerName(ownerKey);
+
+    bool v = connect(_form.deleteButton, SIGNAL(clicked(bool)), this, SLOT(deleteButton(bool)));
+    assert(v);
+
 }
 
 void OwnerInfo::setupOwnerName(int ownerKey)
@@ -42,6 +47,13 @@ void OwnerInfo::setupMoney(int ownerKey)
     _form.maxBid->setText("$" + QString::number(Transaction::availableMoneyLeft(_db, ownerKey)));
 }
 
+/**
+ * sets up widget with all owner transactions
+ *
+ * @version
+ * - R Gura         08/14/2008
+ *   - created
+ */
 void OwnerInfo::setupTransactions(int ownerKey)
 {
     std::string sql = "select NFLPlayers.Key, NFLPlayers.Name, NFLPlayers.Pos, OwnerPlayers.TransType, OwnerPlayers.Price FROM NFLPlayers, OwnerPlayers WHERE OwnerPlayers.PlayerKey=NFLPlayers.Key AND OwnerPlayers.OwnerKey=";
@@ -62,7 +74,7 @@ void OwnerInfo::setupTransactions(int ownerKey)
         QTreeWidgetItem* item = new QTreeWidgetItem;
         item->setText(0, playerName.c_str());
         item->setText(1, pos.c_str());
-        item->setData(0, Qt::UserRole, QVariant(playerKey));
+        item->setData(0, PlayerKey, QVariant(playerKey));
 
         if(type == Buy)
         {
@@ -78,7 +90,7 @@ void OwnerInfo::setupTransactions(int ownerKey)
             std::vector<QTreeWidgetItem*>::const_reverse_iterator itemEndIter = items.rend();
             for(std::vector<QTreeWidgetItem*>::reverse_iterator itemIter = items.rbegin(); itemIter != itemEndIter; ++itemIter)
             {
-                if((*itemIter)->data(0, Qt::UserRole).toInt() == playerKey)
+                if((*itemIter)->data(0, PlayerKey).toInt() == playerKey)
                 {
                     (*itemIter)->setData(1, Qt::ForegroundRole, QVariant(QColor(Qt::gray)));
                     (*itemIter)->setData(0, Qt::ForegroundRole, QVariant(QColor(Qt::gray)));
@@ -93,5 +105,14 @@ void OwnerInfo::setupTransactions(int ownerKey)
     _form.treeWidget->resizeColumnToContents(0);
     _form.treeWidget->resizeColumnToContents(1);
     _form.treeWidget->resizeColumnToContents(2);
+
+}
+
+void OwnerInfo::deleteButton(bool)
+{
+    QList<QTreeWidgetItem*> selection = _form.treeWidget->selectedItems();
+    if(selection.size() == 1)
+    {
+    }
 
 }

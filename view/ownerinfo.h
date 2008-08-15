@@ -8,8 +8,19 @@ struct sqlite3;
 
 class OwnerInfo : public QWidget
 {
+    Q_OBJECT
+
+    public:
+        enum Role
+        {
+            PlayerKey = Qt::UserRole,
+        };
+
     public:
         OwnerInfo(QWidget* parent, sqlite3* db, int ownerKey);
+
+    private slots:
+        void deleteButton(bool);
 
     private:
         void setupTransactions(int ownerKey);
