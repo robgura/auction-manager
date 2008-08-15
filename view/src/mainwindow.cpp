@@ -46,6 +46,9 @@ MainWindow::MainWindow()
     v = connect(_window->actionExport_CSV, SIGNAL(triggered(bool)), this, SLOT(exportCSV(bool)));
     assert(v);
 
+    v = connect(_window->actionGenerate_Test_Data, SIGNAL(triggered(bool)), this, SLOT(generateTestData(bool)));
+    assert(v);
+
     v = connect(_window->playerInput, SIGNAL(textChanged(const QString&)), this, SLOT(playerInputLineEditChange(const QString&)));
     assert(v);
 
@@ -54,6 +57,7 @@ MainWindow::MainWindow()
 
     v = connect(Shouter::instance(), SIGNAL(transaction()), this, SLOT(trans()));
     assert(v);
+
 
     setValidDb(false);
 }
@@ -72,6 +76,7 @@ void MainWindow::setValidDb(bool valid)
         _window->actionNFL_Player->setEnabled(true);
         _window->actionPlayer_Trade->setEnabled(true);
         _window->actionExport_CSV->setEnabled(true);
+        _window->actionGenerate_Test_Data->setEnabled(true);
     }
     else
     {
@@ -80,6 +85,7 @@ void MainWindow::setValidDb(bool valid)
         _window->actionNFL_Player->setEnabled(false);
         _window->actionPlayer_Trade->setEnabled(false);
         _window->actionExport_CSV->setEnabled(false);
+        _window->actionGenerate_Test_Data->setEnabled(false);
         showDefaultOwnerInfo();
     }
 }
@@ -130,7 +136,6 @@ void outputOwner(sqlite3* db, std::ostream& os, int ownerKey)
     std::string sql = "select NFLPlayers.KEY, NFLPlayers.Name, NFLPlayers.Pos, NFLPlayers.Team, OwnerPlayers.TransType, OwnerPlayers.Price FROM NFLPlayers, OwnerPlayers WHERE OwnerPlayers.PlayerKey=NFLPlayers.Key AND OwnerPlayers.OwnerKey=";
     sql += QString::number(ownerKey).toStdString() + ";";
     Rows rows = ParseSQL::exec(db, sql);
-    cout << sql << endl << "Owner Rows " << rows << endl;
     Rows::const_reverse_iterator end = rows.rend();
     std::set<int> ignoreBuy;
     for(Rows::const_reverse_iterator iter = rows.rbegin(); iter != end; ++iter)
@@ -190,7 +195,6 @@ void MainWindow::exportCSV(bool)
 
             std::string sql = "select KEY, Name, Team_Name FROM Owners;";
             Rows rows = ParseSQL::exec(_db, sql);
-            cout << rows << endl;
             for(Rows::const_iterator iter = rows.begin(); iter != rows.end(); ++iter)
             {
                 const int key = atoi(iter->at(0).c_str());
@@ -201,7 +205,7 @@ void MainWindow::exportCSV(bool)
                         << std::endl;
 
                 outputOwner(_db, outFile, key);
-                outFile << endl;
+                outFile << std::endl;
             }
         }
     }
@@ -243,18 +247,16 @@ void MainWindow::newProject(bool)
         }
 
         setValidDb(true);
-
-        //createTestData();
     }
 }
 
-void MainWindow::createTestData()
+void MainWindow::generateTestData(bool)
 {
     _ownerModel->addOwner("Drew", "Dreams");
     _ownerModel->addOwner("Jasmine", "Jugglers");
-    _ownerModel->addOwner("Jennifer", "Jelly");
-    _ownerModel->addOwner("Jimmie", "Juice");
-    _ownerModel->addOwner("Joslynn", "Joint");
+    _ownerModel->addOwner("Jennifer", "Jelly Rolls");
+    _ownerModel->addOwner("Jimmie", "Jalopys");
+    _ownerModel->addOwner("Joslynn", "Jives");
     _ownerModel->addOwner("Michelle", "Moth Balls");
     _ownerModel->addOwner("Rob", "Rockets");
     _ownerModel->addOwner("Zac", "Zig");

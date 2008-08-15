@@ -31,6 +31,7 @@ class MainWindow : public QMainWindow
         void createTeamEditor(bool);
         void ownerClicked(const QModelIndex&);
         void launchTradePlayerDialog(bool);
+        void generateTestData(bool);
 
         void trans();
 
@@ -40,7 +41,6 @@ class MainWindow : public QMainWindow
         void initPlayerModel();
         void initOwnerModel();
         void setValidDb(bool);
-        void creatTestData();
 
         void showDefaultOwnerInfo();
 
