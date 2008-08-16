@@ -1,10 +1,27 @@
 
 #pragma once
 
-#include <QWidget>
+#include "view/transtypes.h"
 #include "view/ui_ownerInfo.h"
+#include <QMetaType>
+#include <QWidget>
 
 struct sqlite3;
+
+struct TransactionData
+{
+    TransTypes type;
+    int playerKey;
+    int rowId;
+    std::string playerName;
+    std::string pos;
+    std::string price;
+};
+
+typedef std::vector<TransactionData> Transactions;
+Transactions getTransactionData(sqlite3* db, int ownerKey);
+
+Q_DECLARE_METATYPE(TransactionData)
 
 class OwnerInfo : public QWidget
 {
@@ -13,7 +30,7 @@ class OwnerInfo : public QWidget
     public:
         enum Role
         {
-            PlayerKey = Qt::UserRole,
+            Data = Qt::UserRole,
         };
 
     public:
@@ -23,12 +40,14 @@ class OwnerInfo : public QWidget
         void deleteButton(bool);
 
     private:
-        void setupTransactions(int ownerKey);
-        void setupMoney(int ownerKey);
-        void setupOwnerName(int ownerKey);
+        void setupTransactions();
+        void setupMoney();
+        void setupOwnerName();
 
     private:
         Ui::Form _form;
 
         sqlite3* _db;
+
+        const int _ownerKey;
 };

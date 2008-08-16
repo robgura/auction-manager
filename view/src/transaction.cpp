@@ -7,6 +7,7 @@
 #include "view/shouter.h"
 #include <QDebug>
 #include <QString>
+#include <assert.h>
 
 
 void Transaction::sell(sqlite3* db, const int ownerKey, const int playerKey, const int price)
@@ -90,3 +91,13 @@ int Transaction::availableMoneyLeft(sqlite3* db, const int ownerKey)
 {
     return moneyLeft(db, ownerKey) - Settings::getRosterPositions() + rosterSize(db, ownerKey) + 1;
 }
+
+void Transaction::deleteTransaction(sqlite3* db, const int rowid)
+{
+    std::string rowid_str = QString::number(rowid).toStdString();
+    Rows rows = ParseSQL::exec(db, "delete FROM OwnerPlayers WHERE ROWID=" + rowid_str + ";");
+    assert(rows.empty());
+
+    Shouter::instance()->trans();
+}
+
