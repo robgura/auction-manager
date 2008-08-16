@@ -89,7 +89,7 @@ void ConfirmPurchase::loadOwnerData()
     Rows rows = ParseSQL::exec(_db, sql);
 
     _form.ownerName->setText(rows.at(0).at(0).c_str());
-    _form.ownerName->setText(rows.at(0).at(1).c_str());
+    _form.ownerTeam->setText(rows.at(0).at(1).c_str());
 }
 
 void ConfirmPurchase::accept()
