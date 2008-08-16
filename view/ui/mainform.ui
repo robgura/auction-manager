@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>866</width>
-    <height>468</height>
+    <width>1018</width>
+    <height>712</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -15,44 +15,42 @@
   <widget class="QWidget" name="centralwidget" >
    <layout class="QHBoxLayout" >
     <item>
-     <widget class="QGroupBox" name="groupBox_2" >
-      <property name="title" >
-       <string>Fantasy Teams</string>
-      </property>
-      <layout class="QVBoxLayout" >
-       <item>
-        <widget class="QTreeView" name="ownerView" >
-         <property name="acceptDrops" >
-          <bool>true</bool>
-         </property>
-         <property name="dragDropMode" >
-          <enum>QAbstractItemView::DropOnly</enum>
-         </property>
-         <property name="alternatingRowColors" >
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QFrame" name="ownerInfo" >
-         <property name="frameShape" >
-          <enum>QFrame::Panel</enum>
-         </property>
-         <property name="frameShadow" >
-          <enum>QFrame::Raised</enum>
-         </property>
-         <property name="lineWidth" >
-          <number>3</number>
-         </property>
-         <layout class="QVBoxLayout" >
-          <item>
-           <layout class="QHBoxLayout" />
-          </item>
-         </layout>
-        </widget>
-       </item>
-      </layout>
-     </widget>
+     <layout class="QVBoxLayout" >
+      <item>
+       <widget class="QGroupBox" name="groupBox_2" >
+        <property name="title" >
+         <string>Fantasy Teams</string>
+        </property>
+        <layout class="QVBoxLayout" >
+         <item>
+          <widget class="QTreeView" name="ownerView" >
+           <property name="acceptDrops" >
+            <bool>true</bool>
+           </property>
+           <property name="dragDropMode" >
+            <enum>QAbstractItemView::DropOnly</enum>
+           </property>
+           <property name="alternatingRowColors" >
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QGroupBox" name="ownerInfo" >
+        <property name="title" >
+         <string>Owner Info</string>
+        </property>
+        <layout class="QVBoxLayout" >
+         <item>
+          <layout class="QVBoxLayout" />
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
     </item>
     <item>
      <widget class="QGroupBox" name="groupBox" >
@@ -95,7 +93,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>866</width>
+     <width>1018</width>
      <height>31</height>
     </rect>
    </property>
@@ -183,5 +181,22 @@
   </action>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>actionExit</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>508</x>
+     <y>355</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
